@@ -1,5 +1,3 @@
-// import getCurrencies from '../api';
-
 import getAPI from '../../services';
 
 // LOGIN ------------------------------------------------------------------------------------------
@@ -34,26 +32,11 @@ export function getProducts() {
   };
 }
 
-// export function getProducts() {
-//   return async (dispatch) => {
-//     const allProducts = await getAPI();
-//     return dispatch(addProduct(allProducts.results));
-//   };
-// }
-
 // Thunk com Then
 // export const getProducts = () => (dispatch) => {
 //   getAPI()
-//     .then((allProducts) => dispatch(
-//       addProduct(allProducts.results),
-//     ))
-//     .catch((error) => dispatch(addProduct(error.message)));
-// };
-
-// export const getProducts = () => (dispatch) => {
-//   getAPI()
-//     .then((allProducts) => dispatch(
-//       addProduct(allProducts.results),
+//     .then((products) => dispatch(
+//       addProduct(products.results),
 //     ));
 // };
 
