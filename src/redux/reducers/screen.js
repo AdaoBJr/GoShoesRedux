@@ -1,5 +1,5 @@
 import {
-  SET_SCREEN_HOME, SET_SCREEN_FAV, SET_SCREEN_CART, SET_FETCHON_DONE, SET_DONE_LOADING,
+  SET_SCREEN_HOME, SET_SCREEN_FAV, SET_SCREEN_CART, SET_FETCHON_DONE, SET_DONE_LOADING, SET_THEME,
 } from '../actions';
 
 export const SCREEN = {
@@ -9,6 +9,7 @@ export const SCREEN = {
   home: true,
   fav: false,
   carT: false,
+  lightTheme: true,
 };
 
 const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturação do Action
@@ -54,6 +55,12 @@ const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturaç
         colec: false,
         fav: false,
         carT: true,
+      };
+    }
+    case SET_THEME: {
+      return {
+        ...state,
+        lightTheme: !state.lightTheme,
       };
     }
     default:

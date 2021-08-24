@@ -87,3 +87,4 @@ export const setDoneLoading = (done, loading) => ({ // ACTION-CREATOR -> SET_DON
 export const SET_SCREEN_HOME = 'SET_SCREEN_HOME'; // ACTION -> SET_SCREEN_HOME
 export const SET_SCREEN_FAV = 'SET_SCREEN_FAV'; // ACTION -> SET_SCREEN_FAV
 export const SET_SCREEN_CART = 'SET_SCREEN_CART'; // ACTION -> SET_SCREEN_CART
+export const SET_THEME = 'SET_THEME'; // ACTION -> SET_THEME
