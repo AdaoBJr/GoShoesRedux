@@ -16,8 +16,8 @@ export const addLogin = (email, password) => ({
 // PRODUCTS ---------------------------------------------------------------------------------------
 
 export const ADD_PRODUCT = 'ADD_PRODUCT';
-export const addProductList = (listShoes) => ({
-  type: ADD_PRODUCT, payload: { listShoes },
+export const addProduct = (allProducts) => ({
+  type: ADD_PRODUCT, payload: { allProducts },
 });
 
 // Fetch Thunk
@@ -27,9 +27,9 @@ export const addProductList = (listShoes) => ({
 //   return async (dispatch) => {
 //     const listShoes = await fetchAPI();
 //     try {
-//       return dispatch(addProductList(listShoes.result));
+//       return dispatch(addProduct(listShoes.result));
 //     } catch (error) {
-//       return dispatch(addProductList(error.message));
+//       return dispatch(addProduct(error.message));
 //     }
 //   };
 // }
@@ -38,9 +38,9 @@ export const addProductList = (listShoes) => ({
 export const fetchShoes = () => (dispatch) => {
   fetchAPI()
     .then((shoesListSuccess) => dispatch(
-      addProductList(shoesListSuccess.result),
+      addProduct(shoesListSuccess.result),
     ))
-    .catch((error) => dispatch(addProductList(error.message)));
+    .catch((error) => dispatch(addProduct(error.message)));
 };
 
 // -------------------------------------------------------------------------------------------------
