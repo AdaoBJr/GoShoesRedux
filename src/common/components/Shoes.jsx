@@ -178,7 +178,7 @@ export default function Shoes() {
   // ----------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(() => { dispatch(getProducts()); }, []);
-  useEffect(qtyPages, [products]);
+  useEffect(() => { if (pages.qtyPgs <= 1) { qtyPages(); } }, [products]);
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
 
   // ----------------------------------------------------------------------------------------------
