@@ -27,9 +27,9 @@ export default function Shoes() {
     return newName;
   };
 
-  const qtyPages = (productS) => {
+  const qtyPages = () => {
     const { cardsLimit, numPgs } = pages;
-    const qtyPgsFull = productS.length / cardsLimit;
+    const qtyPgsFull = products.length / cardsLimit;
     const qtyPgsFloor = Math.floor(qtyPgsFull);
     const qtyPgs = Math.ceil(qtyPgsFull);
 
@@ -177,7 +177,8 @@ export default function Shoes() {
 
   // ----------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
-  useEffect(() => { dispatch(getProducts()); qtyPages(products); }, []);
+  useEffect(() => { dispatch(getProducts()); }, []);
+  useEffect(qtyPages, [products]);
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
 
   // ----------------------------------------------------------------------------------------------
