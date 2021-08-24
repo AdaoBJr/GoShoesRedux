@@ -1,6 +1,6 @@
 // import getCurrencies from '../api';
 
-import fetchAPI from '../../services';
+import getAPI from '../../services';
 
 // LOGIN ------------------------------------------------------------------------------------------
 export const ADD_LOGIN = 'ADD_LOGIN';
@@ -15,33 +15,47 @@ export const addLogin = (email, password) => ({
 
 // PRODUCTS ---------------------------------------------------------------------------------------
 
-export const ADD_PRODUCT = 'ADD_PRODUCT';
-export const addProduct = (allProducts) => ({
+export const ADD_PRODUCT = 'ADD_PRODUCT'; // ACTION -> ADD_PRODUCT
+export const addProduct = (allProducts) => ({ // ACTION-CREATOR -> addProduct
   type: ADD_PRODUCT, payload: { allProducts },
 });
 
 // Fetch Thunk
 
 // Thunk com Async / Await
-// export function fetchShoes() {
+export function getProducts() {
+  return async (dispatch) => {
+    const allProducts = await getAPI();
+    try {
+      return dispatch(addProduct(allProducts.results));
+    } catch (error) {
+      return dispatch(addProduct(error.message));
+    }
+  };
+}
+
+// export function getProducts() {
 //   return async (dispatch) => {
-//     const listShoes = await fetchAPI();
-//     try {
-//       return dispatch(addProduct(listShoes.result));
-//     } catch (error) {
-//       return dispatch(addProduct(error.message));
-//     }
+//     const allProducts = await getAPI();
+//     return dispatch(addProduct(allProducts.results));
 //   };
 // }
 
 // Thunk com Then
-export const fetchShoes = () => (dispatch) => {
-  fetchAPI()
-    .then((shoesListSuccess) => dispatch(
-      addProduct(shoesListSuccess.result),
-    ))
-    .catch((error) => dispatch(addProduct(error.message)));
-};
+// export const getProducts = () => (dispatch) => {
+//   getAPI()
+//     .then((allProducts) => dispatch(
+//       addProduct(allProducts.results),
+//     ))
+//     .catch((error) => dispatch(addProduct(error.message)));
+// };
+
+// export const getProducts = () => (dispatch) => {
+//   getAPI()
+//     .then((allProducts) => dispatch(
+//       addProduct(allProducts.results),
+//     ));
+// };
 
 // -------------------------------------------------------------------------------------------------
 
