@@ -1,8 +1,17 @@
 import {
   SET_SCREEN_HOME, SET_SCREEN_FAV, SET_SCREEN_CART, SET_FETCHON_DONE, SET_DONE_LOADING,
-} from '../store';
+} from '../actions';
 
-const screenReducer = (state, { type, payload }) => { // Desestruturação do Action
+export const SCREEN = {
+  fetchOn: true,
+  loading: undefined,
+  done: undefined,
+  home: true,
+  fav: false,
+  carT: false,
+};
+
+const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturação do Action
   switch (type) {
     case SET_FETCHON_DONE: {
       const { fetchOn, done } = payload;
