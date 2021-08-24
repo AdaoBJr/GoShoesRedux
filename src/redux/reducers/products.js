@@ -3,7 +3,6 @@ import {
 } from '../actions';
 
 export const PRODUCTS = {
-  allProducts: [],
   products: [],
   favorited: [],
 };
@@ -11,10 +10,10 @@ export const PRODUCTS = {
 const productsReducer = (state = PRODUCTS, { type, payload }) => { // Desestruturação do Action
   switch (type) {
     case ADD_PRODUCT: {
-      const { allProducts } = payload;
+      const { products } = payload;
       return {
         ...state,
-        allProducts,
+        products,
       };
     }
     case SET_FAVORITE: {

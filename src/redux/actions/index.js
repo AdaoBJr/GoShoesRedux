@@ -16,8 +16,8 @@ export const addLogin = (email, password) => ({
 // PRODUCTS ---------------------------------------------------------------------------------------
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'; // ACTION -> ADD_PRODUCT
-export const addProduct = (allProducts) => ({ // ACTION-CREATOR -> addProduct
-  type: ADD_PRODUCT, payload: { allProducts },
+export const addProduct = (products) => ({ // ACTION-CREATOR -> addProduct
+  type: ADD_PRODUCT, payload: { products },
 });
 
 // Fetch Thunk
@@ -25,9 +25,9 @@ export const addProduct = (allProducts) => ({ // ACTION-CREATOR -> addProduct
 // Thunk com Async / Await
 export function getProducts() {
   return async (dispatch) => {
-    const allProducts = await getAPI();
+    const products = await getAPI();
     try {
-      return dispatch(addProduct(allProducts.results));
+      return dispatch(addProduct(products.results));
     } catch (error) {
       return dispatch(addProduct(error.message));
     }
