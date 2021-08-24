@@ -14,7 +14,7 @@ export default function Header({ colec }) {
   const dispatch = useDispatch();
   const {
     screen: {
-      home, fav, carT, lightTheme,
+      home, fav, carT, profile, login, lightTheme,
     }, cart: { cart },
   } = useSelector((state) => state);
 
@@ -84,14 +84,14 @@ export default function Header({ colec }) {
                 onClick={() => setPagesMenu(!showMenu)}
                 aria-hidden
               >
-                <Link to="/favoritos" className={(fav) ? 'navLink activeLink' : 'navLink'}>Favoritos</Link>
+                <Link to="/favorited" className={(fav) ? 'navLink activeLink' : 'navLink'}>Favoritos</Link>
               </li>
               <li
                 className="navItem"
                 onClick={() => setPagesMenu(!showMenu)}
                 aria-hidden
               >
-                <Link to="/carrinho" className={(carT) ? 'navLink activeLink display' : 'navLink display'}>
+                <Link to="/cart" className={(carT) ? 'navLink activeLink display' : 'navLink display'}>
                   Carrinho
                   {(Qty !== 0) && (
                   <div className={(Qty === 0) ? 'numCount' : 'numCount showNumCount'}>
@@ -99,6 +99,20 @@ export default function Header({ colec }) {
                   </div>
                   )}
                 </Link>
+              </li>
+              <li
+                className="navItem"
+                onClick={() => setPagesMenu(!showMenu)}
+                aria-hidden
+              >
+                <Link to="/profile" className={(profile) ? 'navLink activeLink' : 'navLink'}>Perfil</Link>
+              </li>
+              <li
+                className="navItem"
+                onClick={() => setPagesMenu(!showMenu)}
+                aria-hidden
+              >
+                <Link to="/login" className={(login) ? 'navLink activeLink' : 'navLink'}>Login</Link>
               </li>
 
               <li

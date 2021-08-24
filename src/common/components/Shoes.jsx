@@ -182,7 +182,7 @@ export default function Shoes() {
 
   // ----------------------------------------------------------------------------------------------
 
-  if (!products.length) { return (<></>); }
+  if (!products?.length) { return (<></>); }
   return (
     renderProducts(products)
   );

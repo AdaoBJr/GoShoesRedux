@@ -9,6 +9,8 @@ export const SCREEN = {
   home: true,
   fav: false,
   carT: false,
+  profile: false,
+  login: false,
   lightTheme: true,
 };
 
