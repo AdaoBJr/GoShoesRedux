@@ -1,6 +1,5 @@
-import React from 'react';
-// import { useDispatch } from 'react-redux';
-// import { getProducts } from './redux/actions';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './common/pages/Home';
@@ -13,6 +12,23 @@ import CreditCard from './common/pages/CreditCard';
 import Purchased from './common/pages/Purchased';
 
 function App() {
+  const { screen: { lightTheme } } = useSelector((state) => state);
+
+  /*= =================== DARK LIGHT THEME ==================== */
+  useEffect(() => {
+    if (!lightTheme) document.body.classList.add('darkTheme');
+    if (lightTheme) document.body.classList.remove('darkTheme');
+  });
+
+  // ----------------------------------------------------------------------------------------------
+  // CICLOS DE VIDA
+  // useEffect(findLocation, [pathname]);
+  // useEffect(() => { setCart(addCart(getStorage('LScart'))); }, []);
+  // useEffect(() => { setCart(addTotalCart(getStorage('LScartSum'))); }, []);
+  // useEffect(() => { setProducts(setFav(getStorage('LSfav'))); }, []);
+
+  // ----------------------------------------------------------------------------------------------
+
   return (
     <Switch>
       <Route exact path="/" component={Home} />
