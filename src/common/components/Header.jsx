@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ALink from 'react-anchor-link-smooth-scroll';
@@ -6,18 +7,16 @@ import ALink from 'react-anchor-link-smooth-scroll';
 import { BiToggleLeft, BiToggleRight } from 'react-icons/bi';
 import { HiSun } from 'react-icons/hi';
 import { RiMoonClearFill } from 'react-icons/ri';
-import store from '../../context/store';
 import { showQty } from '../../functions';
+import { SET_THEME } from '../../redux/actions';
 
 export default function Header({ colec }) {
+  const dispatch = useDispatch();
   const {
-    cart: { cart },
     screen: {
-      home, fav, carT,
-    },
-    lightTheme,
-    setTheme,
-  } = useContext(store);
+      home, fav, carT, lightTheme,
+    }, cart: { cart },
+  } = useSelector((state) => state);
 
   const [showMenu, setPagesMenu] = useState(false);
   const Qty = showQty(false, cart);
@@ -106,7 +105,7 @@ export default function Header({ colec }) {
                 className="changeTheme"
                 id="theme-button"
                 aria-hidden
-                onClick={() => setTheme(!lightTheme)}
+                onClick={() => dispatch({ type: SET_THEME })}
               >
                 { (lightTheme) ? (
                   <span>
