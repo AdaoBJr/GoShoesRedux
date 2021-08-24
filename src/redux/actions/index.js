@@ -15,9 +15,9 @@ export const addLogin = (email, password) => ({
 
 // PRODUCTS ---------------------------------------------------------------------------------------
 
-const SAVE_PRODUCT_LIST = 'SAVE_PRODUCT_LIST';
-export const saveProductList = (listShoes) => ({
-  type: SAVE_PRODUCT_LIST, payload: { listShoes },
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const addProductList = (listShoes) => ({
+  type: ADD_PRODUCT, payload: { listShoes },
 });
 
 // Fetch Thunk
@@ -27,9 +27,9 @@ export const saveProductList = (listShoes) => ({
 //   return async (dispatch) => {
 //     const listShoes = await fetchAPI();
 //     try {
-//       return dispatch(saveProductList(listShoes.result));
+//       return dispatch(addProductList(listShoes.result));
 //     } catch (error) {
-//       return dispatch(saveProductList(error.message));
+//       return dispatch(addProductList(error.message));
 //     }
 //   };
 // }
@@ -38,9 +38,9 @@ export const saveProductList = (listShoes) => ({
 export const fetchShoes = () => (dispatch) => {
   fetchAPI()
     .then((shoesListSuccess) => dispatch(
-      saveProductList(shoesListSuccess.result),
+      addProductList(shoesListSuccess.result),
     ))
-    .catch((error) => dispatch(saveProductList(error.message)));
+    .catch((error) => dispatch(addProductList(error.message)));
 };
 
 // -------------------------------------------------------------------------------------------------
