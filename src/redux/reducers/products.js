@@ -1,15 +1,20 @@
 import {
-  ADD_PRODUCTS, SET_FAVORITE, ADD_CART, ADD_TOTAL_CART,
-} from '../store';
+  ADD_PRODUCT, SET_FAVORITE, ADD_CART, ADD_TOTAL_CART,
+} from '../actions';
 
-const productsReducer = (state, { type, payload }) => { // Desestruturação do Action
+export const PRODUCTS = {
+  allProducts: [],
+  products: [],
+  favorited: [],
+};
+
+const productsReducer = (state = PRODUCTS, { type, payload }) => { // Desestruturação do Action
   switch (type) {
-    case ADD_PRODUCTS: {
-      const { allProducts, products } = payload;
+    case ADD_PRODUCT: {
+      const { allProducts } = payload;
       return {
         ...state,
         allProducts,
-        products,
       };
     }
     case SET_FAVORITE: {
