@@ -17,8 +17,10 @@ export default function Shoes() {
   };
   const [pages, setPages] = useState(initialPage);
 
-  const { products, favorited } = useSelector((state) => state.products);
-  const { cart } = useSelector((state) => state.cart);
+  const {
+    products: { products, favorited },
+    cart: { cart },
+  } = useSelector((state) => state);
 
   const threeWordsTitle = (title) => {
     const newName = `${title.split(' ')[0]} ${title.split(' ')[1]} ${title.split(' ')[2]}`;
@@ -179,7 +181,7 @@ export default function Shoes() {
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
 
   // ----------------------------------------------------------------------------------------------
-  console.log(products);
+
   if (!products.length) { return (<></>); }
   return (
     renderProducts(products)
