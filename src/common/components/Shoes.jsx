@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import {
@@ -6,19 +7,18 @@ import {
 } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
-import store, { addCart, addProducts, setFav } from '../../context/store';
+import { getProducts, addCart, setFav } from '../../redux/actions';
 import { Fav, CarT, showQty } from '../../functions';
-import { CALÇADOS, fetchAPI } from '../../services';
 
 export default function Shoes() {
+  const dispatch = useDispatch();
   const initialPage = {
     qtyPgs: 1, numPgs: [], atualPg: 1, qtyPgsFloor: 1, initialPg: 0, limitPg: 6, cardsLimit: 6,
   };
   const [pages, setPages] = useState(initialPage);
 
-  const {
-    products: { products, favorited }, cart: { cart }, setProducts, setCart,
-  } = useContext(store);
+  const { products, favorited } = useSelector((state) => state.products);
+  const { cart } = useSelector((state) => state.cart);
 
   const threeWordsTitle = (title) => {
     const newName = `${title.split(' ')[0]} ${title.split(' ')[1]} ${title.split(' ')[2]}`;
@@ -36,7 +36,7 @@ export default function Shoes() {
     setPages({ ...pages, qtyPgs, qtyPgsFloor });
   };
 
-  const nextSlide = () => {
+  const nextPage = () => {
     const { limitPg, cardsLimit, atualPg } = pages;
 
     if (limitPg >= products.length - 1) {
@@ -53,7 +53,7 @@ export default function Shoes() {
     }
   };
 
-  const prevSlide = () => {
+  const prevPage = () => {
     const {
       initialPg, cardsLimit, qtyPgsFloor, qtyPgs, atualPg,
     } = pages;
@@ -124,14 +124,14 @@ export default function Shoes() {
                   <div
                     aria-hidden
                     className={(Qty > 0) ? 'removeButton' : 'opacity'}
-                    onClick={() => setCart(addCart(CarT(product, cart, false)))}
+                    onClick={() => dispatch(addCart(CarT(product, cart, false)))}
                   >
                     <FaMinus />
                   </div>
                   <div
                     aria-hidden
                     className={(Qty === 0) ? 'cartItems' : 'cartItemsN1'}
-                    onClick={() => setCart(addCart(CarT(product, cart, true)))}
+                    onClick={() => dispatch(addCart(CarT(product, cart, true)))}
                   >
                     <FaShoppingCart />
                     <div className="numberItems">{ Qty }</div>
@@ -139,7 +139,7 @@ export default function Shoes() {
                   <div
                     aria-hidden
                     className={(Qty > 0) ? 'addButton' : 'opacity'}
-                    onClick={() => setCart(addCart(CarT(product, cart, true)))}
+                    onClick={() => dispatch(addCart(CarT(product, cart, true)))}
                   >
                     <FaPlus />
                   </div>
@@ -147,7 +147,7 @@ export default function Shoes() {
                 <div
                   aria-hidden
                   className="button favoritedButton"
-                  onClick={() => setProducts(setFav(Fav(product, favorited)))}
+                  onClick={() => dispatch(setFav(Fav(product, favorited)))}
                 >
                   {(favorited.find((fav) => fav.id === id)) ? <FaHeart /> : <FaRegHeart /> }
                 </div>
@@ -156,7 +156,7 @@ export default function Shoes() {
           })}
         </div>
         <ul className="pageContent">
-          <li><MdKeyboardArrowLeft onClick={prevSlide} className="arrowPage brLeft" /></li>
+          <li><MdKeyboardArrowLeft onClick={prevPage} className="arrowPage brLeft" /></li>
           {numPgs.map((num) => (
             <li
               aria-hidden
@@ -167,26 +167,20 @@ export default function Shoes() {
               {num}
             </li>
           )) }
-          <li><MdKeyboardArrowRight onClick={nextSlide} className="arrowPage brRight" /></li>
+          <li><MdKeyboardArrowRight onClick={nextPage} className="arrowPage brRight" /></li>
         </ul>
       </section>
     );
   };
 
-  const getProducts = async () => {
-    const response = await fetchAPI(CALÇADOS);
-    const allProducts = response.results;
-    qtyPages(allProducts);
-    setProducts(addProducts(response.results, allProducts));
-  };
-
   // ----------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
-  useEffect(getProducts, []);
+  useEffect(() => { dispatch(getProducts()); qtyPages(products); }, []);
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
 
   // ----------------------------------------------------------------------------------------------
-
+  console.log(products);
+  if (!products.length) { return (<></>); }
   return (
     renderProducts(products)
   );
