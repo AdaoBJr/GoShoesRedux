@@ -1,8 +1,12 @@
-import {
-  ADD_CART, ADD_TOTAL_CART,
-} from '../store';
+import { ADD_CART, ADD_TOTAL_CART } from '../actions';
 
-const cartReducer = (state, { type, payload }) => { // Desestruturação do Action
+export const CART = {
+  cart: [],
+  updateSum: true,
+  totalCart: 0,
+};
+
+const cartReducer = (state = CART, { type, payload }) => { // Desestruturação do Action
   switch (type) {
     case ADD_CART: {
       const { cart } = payload;
