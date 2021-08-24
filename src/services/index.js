@@ -9,5 +9,13 @@ const fetchAPI = () => {
   });
   return axiosAPI;
 };
-
 export default fetchAPI;
+
+export const fetchAPI2 = async () => {
+  try {
+    const response = await fetch(CALCADOS_URL);
+    return response.json();
+  } catch (error) {
+    return console.log(error);
+  }
+};
