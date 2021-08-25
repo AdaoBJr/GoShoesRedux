@@ -7,12 +7,12 @@ import ALink from 'react-anchor-link-smooth-scroll';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Shoes from '../components/Shoes';
-import img0 from '../../images/img0.png';
-import img1 from '../../images/img1.png';
-import img2 from '../../images/img2.png';
-import img3 from '../../images/img3.png';
-import img4 from '../../images/img4.png';
-import img6 from '../../images/img6.png';
+import img0 from '../../files/images/img0.png';
+import img1 from '../../files/images/img1.png';
+import img2 from '../../files/images/img2.png';
+import img3 from '../../files/images/img3.png';
+import img4 from '../../files/images/img4.png';
+import img6 from '../../files/images/img6.png';
 
 export default function Home() {
   const [ScrollY, setScrollY] = useState(false);

@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
 
 import { getStorage } from '../../functions';
-import profileImg from '../../images/profile.jpg';
+import profileImg from '../../files/images/profile.jpg';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
