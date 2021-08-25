@@ -1097,6 +1097,234 @@ button {
   width: 650px;
 }
 
+/*========== PROFILE ==========*/
+
+.profileContainer {
+  padding: 10px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileCard {
+  position: relative;
+  width: 100%;
+  max-width: 1366px;
+  height: 900px;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.profileCard:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 8.5rem;
+  /* background-image: linear-gradient(to top, #00F2FE, #4FACFE ); */
+  background-image: linear-gradient(to top, var(--first-color-dark), var(--first-color-darken) );
+  /* background-color: var(--first-color-darken); */
+}
+
+.profileContent {
+  position: absolute;
+  top: 5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileContent .imageProfile {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: url('images/profile.jpg') no-repeat center / cover;
+  border: 3px solid var(--text-color);
+  margin-bottom: 2px;
+  overflow: hidden;
+}
+
+.bgCamera {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(79, 172, 254, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  font-size: 1.5rem;
+  transition: .5s;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.profileContent .imageProfile:hover .bgCamera {
+  opacity: 1;
+}
+
+.profileContent .userName, .email {
+  font-size: 1.2rem;
+  color: #FFF;
+  line-height: 1;
+  margin: 5px 0;
+}
+
+.bigImgProfile {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: -1;
+  opacity: 0;
+  transition: .5s;
+}
+
+.bigImgProfile img {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.3);
+  max-width: 100%;
+  max-height: 100%;
+  transition: .5s;
+}
+
+.showImage {
+  opacity: 1;
+  z-index: 99;
+}
+
+.showImage img {
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: .3s;
+  background: transparent;
+}
+
+.close:hover {
+  opacity: .5;
+}
+
+.close:before, .close:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 1.5px;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+}
+
+.close:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close:after {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.buttonsInProfile {
+  position: relative;
+  top: 17rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsFavDone {
+  margin-top: 10px;
+  padding: 11px 0;
+  min-width: 230px;
+  width: max-content;
+  color: var(--title-home-color);
+  box-shadow: 0 2px 10px rgba(35,0,77,.2);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: var(--font-semi-bold);
+  text-transform: uppercase;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.8s;
+}
+
+.buttonsFavDone:hover {
+  color: var(--first-color);
+  background-color: #fff;
+  box-shadow: 1px 2px 8px var(--first-color-darken);
+}
+
+.buttonExit {
+  position: relative;
+  margin-top: 10px;
+  padding: 11px 0;
+  min-width: 230px;
+  width: max-content;
+  color: var(--title-color);
+  box-shadow: 0 2px 10px rgba(46, 80, 150,.2);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: var(--font-semi-bold);
+  text-transform: uppercase;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.buttonExit:before {
+  content: '';
+  position: absolute;
+  border-radius: 20px;
+  background: #313131;
+  width: 0;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .5s ease;
+}
+
+.buttonExit:hover:before {
+  width: 101%;
+}
+
+.buttonExit:hover {
+  color: white;
+  box-shadow: 0px 0px 20px 1px rgb(46, 80, 150);
+  transition: all 0.5s ease;
+}
+
+.loginSocial {
+  margin-top: 2rem;
+}
+
+.loginSocial-icon {
+  font-size: 1.5rem;
+  color: var(--title-home-color);
+  margin: 0 1.5rem;
+  cursor: pointer;
+}
+
+.loginSocial-icon:hover {
+  color: var(--first-color);
+}
+
+
 
 /*========== MEDIA QUERIES ==========*/
 
@@ -1410,5 +1638,12 @@ button {
 
   .cartContent {
     width: 17rem;
+  }
+
+
+  /*========== PROFILE ==========*/
+
+  .buttonsInProfile {
+    display: grid;
   }
 }
