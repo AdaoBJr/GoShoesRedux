@@ -1194,7 +1194,7 @@ button {
 
 .showImage {
   opacity: 1;
-  z-index: 99;
+  z-index: var(--z-fixed);
 }
 
 .showImage img {
