@@ -2,13 +2,8 @@ import getAPI from '../../services';
 
 // LOGIN ------------------------------------------------------------------------------------------
 export const ADD_LOGIN = 'ADD_LOGIN';
-
 export const addLogin = (email, password) => ({
-  type: ADD_LOGIN,
-  payload: {
-    email,
-    password,
-  },
+  type: ADD_LOGIN, payload: { email, password },
 });
 
 // PRODUCTS ---------------------------------------------------------------------------------------
@@ -40,12 +35,12 @@ export function getProducts() {
 //     ));
 // };
 
-// -------------------------------------------------------------------------------------------------
-
 export const SET_FAVORITE = 'SET_FAVORITE'; // ACTION -> SET_FAVORITE
 export const setFav = (favorited) => ({ // ACTION-CREATOR -> SET_FAVORITE
   type: SET_FAVORITE, payload: { favorited },
 });
+
+// CART ---------------------------------------------------------------------------------------
 
 export const ADD_CART = 'ADD_CART'; // ACTION -> ADD_PRODUCTS
 export const addCart = (cart) => ({ // ACTION-CREATOR -> ADD_PRODUCTS
@@ -56,6 +51,8 @@ export const ADD_TOTAL_CART = 'ADD_TOTAL_CART'; // ACTION -> ADD_TOTAL_CART
 export const addTotalCart = (totalCart) => ({ // ACTION-CREATOR -> ADD_TOTAL_CART
   type: ADD_TOTAL_CART, payload: { totalCart },
 });
+
+// SCREEN ---------------------------------------------------------------------------------------
 
 export const SET_FETCHON_DONE = 'SET_FETCHON_DONE'; // ACTION -> SET_FETCHON_DONE
 export const setFetchOnDone = (fetchOn, done) => ({ // ACTION-CREATOR -> SET_FETCHON_DONE
@@ -73,3 +70,5 @@ export const SET_SCREEN_CART = 'SET_SCREEN_CART'; // ACTION -> SET_SCREEN_CART
 export const SET_SCREEN_PROFILE = 'SET_SCREEN_PROFILE'; // ACTION -> SET_SCREEN_PROFILE
 export const SET_SCREEN_LOGIN = 'SET_SCREEN_LOGIN'; // ACTION -> SET_SCREEN_LOGIN
 export const SET_THEME = 'SET_THEME'; // ACTION -> SET_THEME
+
+// -------------------------------------------------------------------------------------------------
