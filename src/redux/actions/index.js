@@ -6,6 +6,16 @@ export const addLogin = (userName, email, password) => ({ // ACTION-CREATOR -> a
   type: ADD_LOGIN, payload: { userName, email, password },
 });
 
+export const SET_SIGN_UP = 'SET_SIGN_UP'; // ACTION -> SET_SIGN_UP
+export const setSignUp = () => ({ // ACTION-CREATOR -> setSignUp
+  type: SET_SIGN_UP,
+});
+
+export const SET_MSG_LOGIN = 'SET_MSG_LOGIN'; // ACTION -> SET_MSG_LOGIN
+export const setMsgLogin = (msgLogin) => ({ // ACTION-CREATOR -> setMsgLogin
+  type: SET_MSG_LOGIN, payload: { msgLogin },
+});
+
 export const SET_LOG_IN = 'SET_LOG_IN'; // ACTION -> SET_LOG_IN
 export const setLogIn = (logIn) => ({ // ACTION-CREATOR -> setLogIn
   type: SET_LOG_IN, payload: { logIn },

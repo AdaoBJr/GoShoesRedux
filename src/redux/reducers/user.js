@@ -1,7 +1,11 @@
-import { ADD_LOGIN, SET_LOG_IN } from '../actions';
+import {
+  ADD_LOGIN, SET_LOG_IN, SET_SIGN_UP, SET_MSG_LOGIN,
+} from '../actions';
 
 export const USER = {
   logIn: false,
+  signUp: false,
+  msgLogin: false,
   userName: '',
   email: '',
   password: '',
@@ -14,6 +18,19 @@ const userReducer = (state = USER, { type, payload }) => { // Desestruturação 
       return {
         ...state,
         logIn,
+      };
+    }
+    case SET_SIGN_UP: {
+      return {
+        ...state,
+        signUp: !state.signUp,
+      };
+    }
+    case SET_MSG_LOGIN: {
+      const { msgLogin } = payload;
+      return {
+        ...state,
+        msgLogin,
       };
     }
     case ADD_LOGIN: {

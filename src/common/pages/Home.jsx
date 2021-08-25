@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { BiUpArrowAlt } from 'react-icons/bi';
 import ALink from 'react-anchor-link-smooth-scroll';
 
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Shoes from '../components/Shoes';
@@ -13,9 +15,12 @@ import img2 from '../../files/images/img2.png';
 import img3 from '../../files/images/img3.png';
 import img4 from '../../files/images/img4.png';
 import img6 from '../../files/images/img6.png';
+import { setMsgLogin, setSignUp } from '../../redux/actions';
 
 export default function Home() {
+  const dispatch = useDispatch();
   const [ScrollY, setScrollY] = useState(false);
+  const { user: { msgLogin } } = useSelector((state) => state);
 
   /*= ==== MOUSEMOVE HOME IMG ===== */
   const move = (e) => {
@@ -37,6 +42,36 @@ export default function Home() {
   };
   window.addEventListener('scroll', scrollTop);
 
+  /*= =================== MESSAGE LOGIN ==================== */
+  const renderMsgLogin = () => (
+    <div className={(msgLogin) ? 'msgLogin showMsg' : 'msgLogin'}>
+      <div aria-hidden className="msgClose" onClick={() => { dispatch(setMsgLogin(false)); }} />
+      <p className="msgContent">Para continuar,</p>
+      <p className="msgContent">efetue o acesso a sua conta GoShoes</p>
+      <br />
+      <Link to="/login">
+        <button
+          type="button"
+          className="loginSignin"
+          onClick={() => { dispatch(setMsgLogin(false)); }}
+          style={{ marginBottom: '.8rem' }}
+        >
+          Acessar Login
+        </button>
+      </Link>
+      <p className="loginAccount">Não tem uma conta ?</p>
+      <Link to="/login">
+        <button
+          type="button"
+          onClick={() => { dispatch(setSignUp()); dispatch(setMsgLogin(false)); }}
+          className="loginSignin"
+        >
+          Registre-se
+        </button>
+      </Link>
+    </div>
+  );
+
   // ---------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
@@ -49,6 +84,10 @@ export default function Home() {
       <ALink href="#home" className={(ScrollY) ? 'scrolltop showScroll' : 'scrolltop'} id="scroll-top">
         <BiUpArrowAlt className="scrolltopIcon" />
       </ALink>
+
+      {/*  =================== MESSAGE LOGIN ==================== */}
+      { renderMsgLogin() }
+
       {/* <!--========== HEADER ==========--> */}
       <Header colec={ScrollY} />
 
