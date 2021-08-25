@@ -10,9 +10,12 @@ import Details from './common/pages/Details';
 import Cart from './common/pages/Cart';
 import CreditCard from './common/pages/CreditCard';
 import Purchased from './common/pages/Purchased';
+
 import {
-  addCart, addTotalCart, setFav, SET_SCREEN_CART, SET_SCREEN_FAV, SET_SCREEN_HOME,
+  addCart, addTotalCart, setFav, SET_SCREEN_CART, SET_SCREEN_FAV,
+  SET_SCREEN_HOME, SET_SCREEN_LOGIN, SET_SCREEN_PROFILE,
 } from './redux/actions';
+
 import { getStorage } from './functions';
 
 function App() {
@@ -28,9 +31,25 @@ function App() {
 
   // LOCATION -------------------------------------------------------------------------------------
   const findLocation = () => {
-    if (pathname === ('/favorited')) { dispatch({ type: SET_SCREEN_FAV }); }
-    if (pathname === ('/cart')) { dispatch({ type: SET_SCREEN_CART }); }
-    if (pathname === ('/')) { dispatch({ type: SET_SCREEN_HOME }); }
+    switch (pathname) {
+      case '/':
+        return dispatch({ type: SET_SCREEN_HOME });
+
+      case '/favorited':
+        return dispatch({ type: SET_SCREEN_FAV });
+
+      case '/cart':
+        return dispatch({ type: SET_SCREEN_CART });
+
+      case '/profile':
+        return dispatch({ type: SET_SCREEN_PROFILE });
+
+      case '/login':
+        return dispatch({ type: SET_SCREEN_LOGIN });
+
+      default:
+        return '';
+    }
   };
 
   // ----------------------------------------------------------------------------------------------
