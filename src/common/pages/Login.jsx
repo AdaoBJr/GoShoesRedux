@@ -1,26 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 import { BiLockAlt, BiUser } from 'react-icons/bi';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 
 import imgLogin from '../../files/images/img-login.svg';
-import { addLogin } from '../../redux/actions';
+import { addLogin, setLogIn } from '../../redux/actions';
 import { setStorage } from '../../functions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+const initialLogin = {
+  logIn: null,
+  LuserName: '',
+  Lemail: '',
+  Lpassword: '',
+};
+
+const initialRegister = {
+  RuserName: '',
+  Remail: '',
+  Rpassword: '',
+};
+
 export default function Login() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [signUp, setSignUp] = useState(false);
   const [disabledBtn, setDisabledBtn] = useState(true);
-  const { user: { userName, email, password } } = useSelector((state) => state);
+  const [register, setRegister] = useState(initialRegister);
+  const [login, setLogin] = useState(initialLogin);
+
+  const { RuserName, Remail, Rpassword } = register;
+  const { LuserName, Lemail, Lpassword } = login;
+  const { user: { email, password } } = useSelector((state) => state);
 
   const validationEmailPwd = () => {
     const regex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    const Email = regex.test(email);
-    const Pwd = password.length;
+    const Email = regex.test(Remail) || regex.test(Lemail);
+    console.log(Email);
+    const Pwd = Rpassword.length || Lpassword.length;
+    console.log(Pwd);
     const minPwd = 7;
 
     if (Email && Pwd >= minPwd) {
@@ -30,9 +51,30 @@ export default function Login() {
     }
   };
 
-  const handleClick = () => {
-    setStorage('LSuser', { userName, email, password });
+  const handleChange = ({ target: { name, value } }, state) => {
+    if (state === 'login') { setLogin({ ...login, [name]: value }); }
+    if (state === 'register') { setRegister({ ...register, [name]: value }); }
+  };
+
+  const handleClickRegister = () => {
+    dispatch(addLogin(RuserName, Remail, Rpassword));
+    setLogin({
+      ...login, LuserName: RuserName, Lemail: Remail, Lpassword: Rpassword,
+    });
+    setRegister(initialRegister);
     setDisabledBtn(true);
+  };
+
+  const handleClickLogin = () => {
+    if (Lemail === email && Lpassword === password) {
+      dispatch(setLogIn(true));
+      setLogin({ ...login, logIn: true });
+      setStorage('LSuser', { LuserName, Lemail, Lpassword });
+      setDisabledBtn(true);
+      history.push('/');
+    } else {
+      setLogin({ ...login, logIn: false });
+    }
   };
 
   const renderLogin = () => (
@@ -48,11 +90,11 @@ export default function Login() {
           <div className="loginBox">
             <BiUser className="loginIcon" />
             <input
-              name="email"
+              name="Lemail"
               placeholder="Insira seu e-mail"
               autoComplete="off"
-              data-testid="email-input"
               className="loginInput"
+              onChange={(e) => handleChange(e, 'login')}
             />
           </div>
 
@@ -60,26 +102,23 @@ export default function Login() {
             <BiLockAlt className="loginIcon" />
             <input
               type="password"
-              name="password"
+              name="Lpassword"
               placeholder="Insira sua senha de 7 dígitos"
-              data-testid="password-input"
               className="loginInput"
+              onChange={(e) => handleChange(e, 'login')}
             />
           </div>
 
           <a href className="loginForgot">Esqueceu sua senha?</a>
 
-          <Link to="/comidas">
-            <button
-              type="button"
-              data-testid="login-submit-btn"
-              className="loginButton"
-              disabled={disabledBtn}
-              onClick={() => setDisabledBtn(true)}
-            >
-              Entrar
-            </button>
-          </Link>
+          <button
+            type="button"
+            className="loginButton"
+            disabled={disabledBtn}
+            onClick={handleClickLogin}
+          >
+            Entrar
+          </button>
 
           <div>
             <span className="loginAccount">Não tem uma conta ?</span>
@@ -100,22 +139,24 @@ export default function Login() {
             <BiUser className="loginIcon" />
             <input
               type="text"
-              name="userName"
+              name="RuserName"
+              value={RuserName}
               placeholder="Username"
               autoComplete="off"
               className="loginInput"
-              onChange={(e) => dispatch(addLogin(e))}
+              onChange={(e) => handleChange(e, 'register')}
             />
           </div>
 
           <div className="loginBox">
             <BiLockAlt className="loginIcon" />
             <input
-              name="email"
+              name="Remail"
+              value={Remail}
               placeholder="Insira um e-mail válido"
               autoComplete="off"
               className="loginInput"
-              onChange={(e) => dispatch(addLogin(e))}
+              onChange={(e) => handleChange(e, 'register')}
             />
           </div>
 
@@ -123,10 +164,11 @@ export default function Login() {
             <BiLockAlt className="loginIcon" />
             <input
               type="password"
-              name="password"
+              name="Rpassword"
+              value={Rpassword}
               placeholder="Insira uma senha de 7 dígitos"
               className="loginInput"
-              onChange={(e) => dispatch(addLogin(e))}
+              onChange={(e) => handleChange(e, 'register')}
             />
           </div>
 
@@ -134,7 +176,7 @@ export default function Login() {
             type="button"
             className="loginButton"
             disabled={disabledBtn}
-            onClick={() => { setSignUp(!signUp); handleClick(); }}
+            onClick={() => { setSignUp(!signUp); handleClickRegister(); }}
           >
             Criar
           </button>
@@ -162,7 +204,7 @@ export default function Login() {
 
   // CICLOS DE VIDA --------------------------------------------------------------------------
 
-  useEffect(validationEmailPwd, [email, password.length]);
+  useEffect(validationEmailPwd, [Remail, Rpassword, Lemail, Lpassword]);
 
   // ------------------------------------------------------------------------------------------
   return (
