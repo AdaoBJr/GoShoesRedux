@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+
 import {
   FaHeart, FaRegHeart, FaMinus, FaPlus, FaShoppingCart,
 } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
-import { getProducts, addCart, setFav } from '../../redux/actions';
+import {
+  getProducts, addCart, setFav, setMsgLogin,
+} from '../../redux/actions';
 import { Fav, CarT, showQty } from '../../functions';
 
 export default function Shoes() {
@@ -20,6 +23,7 @@ export default function Shoes() {
   const {
     products: { products, favorited },
     cart: { cart },
+    user: { logIn },
   } = useSelector((state) => state);
 
   const threeWordsTitle = (title) => {
@@ -88,6 +92,16 @@ export default function Shoes() {
     });
   };
 
+  const addToCart = (product, add) => {
+    if (logIn) {
+      dispatch(addCart(CarT(product, cart, add)));
+      dispatch(setMsgLogin(false));
+    } else {
+      dispatch(setMsgLogin(true));
+      dispatch(addCart(CarT(product, cart, add)));
+    }
+  };
+
   const renderProducts = (Products) => {
     const {
       initialPg, limitPg, numPgs, atualPg,
@@ -126,14 +140,14 @@ export default function Shoes() {
                   <div
                     aria-hidden
                     className={(Qty > 0) ? 'removeButton' : 'opacity'}
-                    onClick={() => dispatch(addCart(CarT(product, cart, false)))}
+                    onClick={() => addToCart(product, false)}
                   >
                     <FaMinus />
                   </div>
                   <div
                     aria-hidden
                     className={(Qty === 0) ? 'cartItems' : 'cartItemsN1'}
-                    onClick={() => dispatch(addCart(CarT(product, cart, true)))}
+                    onClick={() => addToCart(product, true)}
                   >
                     <FaShoppingCart />
                     <div className="numberItems">{ Qty }</div>
@@ -141,7 +155,7 @@ export default function Shoes() {
                   <div
                     aria-hidden
                     className={(Qty > 0) ? 'addButton' : 'opacity'}
-                    onClick={() => dispatch(addCart(CarT(product, cart, true)))}
+                    onClick={() => addToCart(product, true)}
                   >
                     <FaPlus />
                   </div>
