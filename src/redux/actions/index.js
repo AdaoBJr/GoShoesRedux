@@ -2,8 +2,8 @@ import getAPI from '../../services';
 
 // LOGIN ------------------------------------------------------------------------------------------
 export const ADD_LOGIN = 'ADD_LOGIN';
-export const addLogin = (email, password) => ({
-  type: ADD_LOGIN, payload: { email, password },
+export const addLogin = ({ target: { name, value } }) => ({
+  type: ADD_LOGIN, payload: { name, value },
 });
 
 // PRODUCTS ---------------------------------------------------------------------------------------
