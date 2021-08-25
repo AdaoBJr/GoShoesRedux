@@ -6,7 +6,7 @@ import { BiLockAlt, BiUser } from 'react-icons/bi';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 
 import imgLogin from '../../files/images/img-login.svg';
-import { addLogin, setLogIn } from '../../redux/actions';
+import { addLogin, setLogIn, setSignUp } from '../../redux/actions';
 import { setStorage } from '../../functions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -27,14 +27,13 @@ const initialRegister = {
 export default function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [signUp, setSignUp] = useState(false);
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [register, setRegister] = useState(initialRegister);
   const [login, setLogin] = useState(initialLogin);
 
   const { RuserName, Remail, Rpassword } = register;
   const { LuserName, Lemail, Lpassword } = login;
-  const { user: { email, password } } = useSelector((state) => state);
+  const { user: { signUp, email, password } } = useSelector((state) => state);
 
   const validationEmailPwd = () => {
     const regex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
@@ -124,7 +123,7 @@ export default function Login() {
             <span className="loginAccount">Não tem uma conta ?</span>
             <button
               type="button"
-              onClick={() => setSignUp(!signUp)}
+              onClick={() => dispatch(setSignUp())}
               className="loginSignin"
             >
               Registre-se
@@ -185,7 +184,7 @@ export default function Login() {
             <span className="loginAccount">Já tem uma conta ?</span>
             <button
               type="button"
-              onClick={() => setSignUp(!signUp)}
+              onClick={() => dispatch(setSignUp())}
               className="loginSignup"
             >
               Acessar conta
