@@ -1,9 +1,14 @@
 import getAPI from '../../services';
 
 // LOGIN ------------------------------------------------------------------------------------------
-export const ADD_LOGIN = 'ADD_LOGIN';
-export const addLogin = ({ target: { name, value } }) => ({
-  type: ADD_LOGIN, payload: { name, value },
+export const ADD_LOGIN = 'ADD_LOGIN'; // ACTION -> ADD_LOGIN
+export const addLogin = (userName, email, password) => ({ // ACTION-CREATOR -> addLogin
+  type: ADD_LOGIN, payload: { userName, email, password },
+});
+
+export const SET_LOG_IN = 'SET_LOG_IN'; // ACTION -> SET_LOG_IN
+export const setLogIn = (logIn) => ({ // ACTION-CREATOR -> setLogIn
+  type: SET_LOG_IN, payload: { logIn },
 });
 
 // PRODUCTS ---------------------------------------------------------------------------------------
