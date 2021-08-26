@@ -15,7 +15,9 @@ export default function Header({ colec }) {
   const {
     screen: {
       home, fav, carT, profile, login, lightTheme,
-    }, cart: { cart },
+    },
+    cart: { cart },
+    user: { logIn },
   } = useSelector((state) => state);
 
   const [showMenu, setPagesMenu] = useState(false);
@@ -93,11 +95,7 @@ export default function Header({ colec }) {
               >
                 <Link to="/cart" className={(carT) ? 'navLink activeLink display' : 'navLink display'}>
                   Carrinho
-                  {(Qty !== 0) && (
-                  <div className={(Qty === 0) ? 'numCount' : 'numCount showNumCount'}>
-                    {Qty}
-                  </div>
-                  )}
+                  {(Qty !== 0 && logIn) ? (<div className="numCount showNumCount">{Qty}</div>) : ''}
                 </Link>
               </li>
               <li
