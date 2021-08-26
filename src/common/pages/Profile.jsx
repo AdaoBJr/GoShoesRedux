@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
   FaCamera, FaFacebookF, FaTwitter, FaGoogle,
 } from 'react-icons/fa';
 
-import { getStorage } from '../../functions';
 import profileImg from '../../files/images/profile.jpg';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 export default function Profile() {
   const [showImg, setShowImg] = useState(false);
-  const [{ email }] = useState(() => getStorage('LSuser', { email: '' }));
+  const { user: { userName, email } } = useSelector((state) => state);
 
   const renderBtnsProfile = () => (
     <div className="buttonsInProfile">
@@ -73,7 +73,7 @@ export default function Profile() {
                 <FaCamera className="cameraIcon" />
               </button>
             </div>
-            <h3 className="userName">{ `@${email.split('@')[0]}` }</h3>
+            <h3 className="userName">{ userName }</h3>
             <h3 className="email">{ email }</h3>
           </div>
           {renderBtnsProfile()}
