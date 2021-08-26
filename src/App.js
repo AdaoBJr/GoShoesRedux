@@ -12,7 +12,7 @@ import CreditCard from './common/pages/CreditCard';
 import Purchased from './common/pages/Purchased';
 
 import {
-  addCart, addTotalCart, setFav, SET_SCREEN_CART, SET_SCREEN_FAV,
+  addCart, addLogin, addTotalCart, setFav, SET_SCREEN_CART, SET_SCREEN_FAV,
   SET_SCREEN_HOME, SET_SCREEN_LOGIN, SET_SCREEN_PROFILE,
 } from './redux/actions';
 
@@ -58,6 +58,7 @@ function App() {
   useEffect(() => { dispatch(addCart(getStorage('LScart'))); }, []);
   useEffect(() => { dispatch(addTotalCart(getStorage('LScartSum'))); }, []);
   useEffect(() => { dispatch(setFav(getStorage('LSfav'))); }, []);
+  useEffect(() => { dispatch(addLogin(getStorage('LSusers'))); }, []);
 
   // ----------------------------------------------------------------------------------------------
 

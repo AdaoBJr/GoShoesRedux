@@ -2,8 +2,8 @@ import getAPI from '../../services';
 
 // LOGIN ------------------------------------------------------------------------------------------
 export const ADD_LOGIN = 'ADD_LOGIN'; // ACTION -> ADD_LOGIN
-export const addLogin = (userName, email, password) => ({ // ACTION-CREATOR -> addLogin
-  type: ADD_LOGIN, payload: { userName, email, password },
+export const addLogin = (users) => ({ // ACTION-CREATOR -> addLogin
+  type: ADD_LOGIN, payload: { users },
 });
 
 export const SET_SIGN_UP = 'SET_SIGN_UP'; // ACTION -> SET_SIGN_UP
@@ -22,8 +22,8 @@ export const setMsgLogInOK = (logIn, msgLoginOK) => ({ // ACTION-CREATOR -> setM
 });
 
 export const SET_MSG_LOGIN_ERROR = 'SET_MSG_LOGIN_ERROR'; // ACTION -> SET_MSG_LOGIN_ERROR
-export const setMsgLoginError = (msgLoginError) => ({ // ACTION-CREATOR -> setMsgLoginError
-  type: SET_MSG_LOGIN_ERROR, payload: { msgLoginError },
+export const setMsgLoginError = (msgLoginError, msgLoginNotExist) => ({
+  type: SET_MSG_LOGIN_ERROR, payload: { msgLoginError, msgLoginNotExist },
 });
 
 export const SET_LOG_IN = 'SET_LOG_IN'; // ACTION -> SET_LOG_IN

@@ -27,7 +27,7 @@ export default function GoLogout() {
           <button
             type="button"
             className="loginSignin"
-            onClick={() => { dispatch(setLogOut()); localStorage.clear(); }}
+            onClick={() => { dispatch(setLogOut()); }}
           >
             Desconectar
           </button>

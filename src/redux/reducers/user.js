@@ -9,9 +9,8 @@ export const USER = {
   msgLogin: false,
   msgLoginOK: false,
   msgLoginError: false,
-  userName: '',
-  email: '',
-  password: '',
+  msgLoginNotExist: false,
+  users: [],
 };
 
 const userReducer = (state = USER, { type, payload }) => { // Desestruturação do Action
@@ -45,33 +44,27 @@ const userReducer = (state = USER, { type, payload }) => { // Desestruturação 
       };
     }
     case SET_MSG_LOGIN_ERROR: {
-      const { msgLoginError } = payload;
+      const { msgLoginError, msgLoginNotExist } = payload;
       return {
         ...state,
         msgLoginError,
+        msgLoginNotExist,
       };
     }
     case ADD_LOGIN: {
-      const { userName, email, password } = payload;
+      const { users } = payload;
       return {
         ...state,
-        userName,
-        email,
-        password,
+        users,
       };
     }
     case SET_LOG_OUT: {
-      const {
-        logIn, signUp, msgLogin, userName, email, password,
-      } = USER;
+      const { logIn, signUp, msgLogin } = USER;
       return {
         ...state,
         logIn,
         signUp,
         msgLogin,
-        userName,
-        email,
-        password,
       };
     }
     default:

@@ -6,11 +6,11 @@ import { BiLockAlt, BiUser } from 'react-icons/bi';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 import { MdError } from 'react-icons/md';
 
-// import imgLogin from '../../files/images/img-login.svg';
 import {
   addLogin, setMsgLoginError, setMsgLogInOK, setSignUp,
 } from '../../redux/actions';
-import { setStorage } from '../../functions';
+import { AddToUsers } from '../../functions';
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GoLogout from '../components/GoLogout';
@@ -38,10 +38,10 @@ export default function Login() {
   const [login, setLogin] = useState(initialLogin);
 
   const { RuserName, Remail, Rpassword } = register;
-  const { LuserName, Lemail, Lpassword } = login;
+  const { Lemail, Lpassword } = login;
   const {
     user: {
-      logIn, msgLoginError, signUp, email, password,
+      logIn, msgLoginError, msgLoginNotExist, signUp, users,
     },
   } = useSelector((state) => state);
 
@@ -66,8 +66,8 @@ export default function Login() {
     }, TIME_SEC);
   };
 
-  const closeMsgLoginError = () => {
-    dispatch(setMsgLoginError(true));
+  const closeMsgLoginError = (error, notExist) => {
+    dispatch(setMsgLoginError(error, notExist));
 
     setTimeout(() => {
       dispatch(setMsgLoginError(false));
@@ -80,29 +80,36 @@ export default function Login() {
   };
 
   const handleClickRegister = () => {
-    dispatch(addLogin(RuserName, Remail, Rpassword));
+    setLogin({ ...login, LuserName: RuserName });
+    dispatch(addLogin(AddToUsers(register, users)));
     setDisabledBtn(true);
     setRegister(initialRegister);
   };
 
   const handleClickLogin = () => {
-    if (Lemail === email && Lpassword === password) {
-      closeMsgLoginOK();
-      setStorage('LSuser', { LuserName, Lemail, Lpassword });
-      setDisabledBtn(true);
-      history.push('/');
+    const atualUser = users.filter((item) => item.email === Lemail);
+    if (atualUser.length) {
+      if (Lemail === atualUser[0].email && Lpassword === atualUser[0].password) {
+        closeMsgLoginOK();
+        setDisabledBtn(true);
+        history.push('/');
+      } else {
+        closeMsgLoginError(true, false);
+      }
     } else {
-      closeMsgLoginError();
+      closeMsgLoginError(false, true);
+      setDisabledBtn(true);
     }
   };
 
   /*= =================== MESSAGE LOGIN_ERROR ==================== */
   const renderMsgLoginOK = () => (
-    <div className={(msgLoginError) ? 'msgLoginError showMsg' : 'msgLoginError'}>
+    <div className={(msgLoginError || msgLoginNotExist) ? 'msgLoginError showMsg' : 'msgLoginError'}>
       <div aria-hidden className="msgClose" onClick={() => { dispatch(setMsgLoginError(false)); }} />
       <p>Login não efetuado,</p>
       <div className="msgContent">
-        <p>erro no usuário e/ou senha</p>
+        {(msgLoginError) ? <p>erro no usuário e/ou senha</p> : ''}
+        {(msgLoginNotExist) ? <p>usuário não cadastrado no sistema</p> : ''}
         <MdError style={{ fontSize: '1.4rem', marginLeft: '0.3rem' }} />
       </div>
     </div>

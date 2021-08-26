@@ -38,6 +38,30 @@ export const Fav = (product, favorited) => {
 };
 
 // ----------------------------------------------------------------------------------------------
+// LOGIN
+
+export const AddToUsers = (register, users) => {
+  const { RuserName: userName, Remail: email, Rpassword: password } = register;
+  const Users = [...users];
+
+  const findUser = Users.find((item) => item.email === email);
+  if (!Users.length || !findUser) {
+    const newUsers = [...users, {
+      userName, email, password,
+    }];
+    setStorage('LSusers', newUsers);
+    return newUsers;
+  }
+  const key = Users.indexOf(findUser);
+
+  Users[key].email = email;
+  Users[key].password = password;
+
+  setStorage('LSusers', Users);
+  return Users;
+};
+
+// ----------------------------------------------------------------------------------------------
 // CARRINHO DE COMPRAS
 
 // ADD, REMOVE, UPDATE CART
@@ -77,7 +101,6 @@ export const sumCart = (cart) => {
 };
 
 // ----------------------------------------------------------------------------------------------
-
 // VIEW QUANTIDADE DE PRODUTOS EM ESTOQUE
 export const showQty = (id, cart) => {
   if (id) {
