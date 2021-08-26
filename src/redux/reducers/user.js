@@ -1,11 +1,14 @@
 import {
-  ADD_LOGIN, SET_LOG_IN, SET_SIGN_UP, SET_MSG_LOGIN, SET_LOG_OUT,
+  ADD_LOGIN, SET_LOG_IN, SET_SIGN_UP, SET_MSG_LOGIN,
+  SET_LOG_OUT, SET_MSG_LOGIN_OK, SET_MSG_LOGIN_ERROR,
 } from '../actions';
 
 export const USER = {
   logIn: false,
   signUp: false,
   msgLogin: false,
+  msgLoginOK: false,
+  msgLoginError: false,
   userName: '',
   email: '',
   password: '',
@@ -31,6 +34,21 @@ const userReducer = (state = USER, { type, payload }) => { // Desestruturação 
       return {
         ...state,
         msgLogin,
+      };
+    }
+    case SET_MSG_LOGIN_OK: {
+      const { logIn, msgLoginOK } = payload;
+      return {
+        ...state,
+        logIn,
+        msgLoginOK,
+      };
+    }
+    case SET_MSG_LOGIN_ERROR: {
+      const { msgLoginError } = payload;
+      return {
+        ...state,
+        msgLoginError,
       };
     }
     case ADD_LOGIN: {

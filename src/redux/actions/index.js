@@ -16,6 +16,16 @@ export const setMsgLogin = (msgLogin) => ({ // ACTION-CREATOR -> setMsgLogin
   type: SET_MSG_LOGIN, payload: { msgLogin },
 });
 
+export const SET_MSG_LOGIN_OK = 'SET_MSG_LOGIN_OK'; // ACTION -> SET_MSG_LOGIN_OK
+export const setMsgLogInOK = (logIn, msgLoginOK) => ({ // ACTION-CREATOR -> setMsgLogInOK
+  type: SET_MSG_LOGIN_OK, payload: { logIn, msgLoginOK },
+});
+
+export const SET_MSG_LOGIN_ERROR = 'SET_MSG_LOGIN_ERROR'; // ACTION -> SET_MSG_LOGIN_ERROR
+export const setMsgLoginError = (msgLoginError) => ({ // ACTION-CREATOR -> setMsgLoginError
+  type: SET_MSG_LOGIN_ERROR, payload: { msgLoginError },
+});
+
 export const SET_LOG_IN = 'SET_LOG_IN'; // ACTION -> SET_LOG_IN
 export const setLogIn = (logIn) => ({ // ACTION-CREATOR -> setLogIn
   type: SET_LOG_IN, payload: { logIn },

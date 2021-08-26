@@ -15,12 +15,12 @@ import img2 from '../../files/images/img2.png';
 import img3 from '../../files/images/img3.png';
 import img4 from '../../files/images/img4.png';
 import img6 from '../../files/images/img6.png';
-import { setMsgLogin, setSignUp } from '../../redux/actions';
+import { setMsgLogin, setMsgLogInOK, setSignUp } from '../../redux/actions';
 
 export default function Home() {
   const dispatch = useDispatch();
   const [ScrollY, setScrollY] = useState(false);
-  const { user: { msgLogin } } = useSelector((state) => state);
+  const { user: { msgLogin, msgLoginOK } } = useSelector((state) => state);
 
   /*= ==== MOUSEMOVE HOME IMG ===== */
   const move = (e) => {
@@ -72,6 +72,15 @@ export default function Home() {
     </div>
   );
 
+  /*= =================== MESSAGE LOGIN_OK ==================== */
+  const renderMsgLoginOK = () => (
+    <div className={(msgLoginOK) ? 'msgLoginOK showMsg' : 'msgLogin'}>
+      <div aria-hidden className="msgClose" onClick={() => { dispatch(setMsgLogInOK(true, false)); }} />
+      <p className="msgContent" style={{ marginTop: '1rem' }}>Login efetuado com sucesso </p>
+      <br />
+    </div>
+  );
+
   // ---------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
@@ -87,6 +96,9 @@ export default function Home() {
 
       {/*  =================== MESSAGE LOGIN ==================== */}
       { renderMsgLogin() }
+
+      {/*  =================== MESSAGE LOGIN_OK ==================== */}
+      { renderMsgLoginOK() }
 
       {/* <!--========== HEADER ==========--> */}
       <Header colec={ScrollY} />

@@ -6,14 +6,13 @@ import { BiLockAlt, BiUser } from 'react-icons/bi';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 
 import imgLogin from '../../files/images/img-login.svg';
-import { addLogin, setLogIn, setSignUp } from '../../redux/actions';
+import { addLogin, setMsgLogInOK, setSignUp } from '../../redux/actions';
 import { setStorage } from '../../functions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GoLogout from '../components/GoLogout';
 
 const initialLogin = {
-  logIn: null,
   LuserName: '',
   Lemail: '',
   Lpassword: '',
@@ -53,6 +52,13 @@ export default function Login() {
     }
   };
 
+  const closeMsgLoginOK = () => {
+    const TEN_SEC = 10000;
+    setTimeout(() => {
+      dispatch(setMsgLogInOK(true, false));
+    }, TEN_SEC);
+  };
+
   const handleChange = ({ target: { name, value } }, state) => {
     if (state === 'login') { setLogin({ ...login, [name]: value }); }
     if (state === 'register') { setRegister({ ...register, [name]: value }); }
@@ -66,13 +72,11 @@ export default function Login() {
 
   const handleClickLogin = () => {
     if (Lemail === email && Lpassword === password) {
-      dispatch(setLogIn(true));
-      setLogin({ ...login, logIn: true });
+      dispatch(setMsgLogInOK(true, true));
       setStorage('LSuser', { LuserName, Lemail, Lpassword });
+      closeMsgLoginOK();
       setDisabledBtn(true);
       history.push('/');
-    } else {
-      setLogin({ ...login, logIn: false });
     }
   };
 
