@@ -4,13 +4,17 @@ import { useHistory } from 'react-router';
 
 import { BiLockAlt, BiUser } from 'react-icons/bi';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
+import { MdError } from 'react-icons/md';
 
-import imgLogin from '../../files/images/img-login.svg';
-import { addLogin, setMsgLogInOK, setSignUp } from '../../redux/actions';
+// import imgLogin from '../../files/images/img-login.svg';
+import {
+  addLogin, setMsgLoginError, setMsgLogInOK, setSignUp,
+} from '../../redux/actions';
 import { setStorage } from '../../functions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GoLogout from '../components/GoLogout';
+import GoLoginDash from '../components/GoLoginDash';
 
 const initialLogin = {
   LuserName: '',
@@ -24,6 +28,8 @@ const initialRegister = {
   Rpassword: '',
 };
 
+const TIME_SEC = 6000;
+
 export default function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -35,7 +41,7 @@ export default function Login() {
   const { LuserName, Lemail, Lpassword } = login;
   const {
     user: {
-      logIn, signUp, email, password,
+      logIn, msgLoginError, signUp, email, password,
     },
   } = useSelector((state) => state);
 
@@ -53,10 +59,19 @@ export default function Login() {
   };
 
   const closeMsgLoginOK = () => {
-    const TEN_SEC = 10000;
+    dispatch(setMsgLogInOK(true, true));
+
     setTimeout(() => {
       dispatch(setMsgLogInOK(true, false));
-    }, TEN_SEC);
+    }, TIME_SEC);
+  };
+
+  const closeMsgLoginError = () => {
+    dispatch(setMsgLoginError(true));
+
+    setTimeout(() => {
+      dispatch(setMsgLoginError(false));
+    }, TIME_SEC);
   };
 
   const handleChange = ({ target: { name, value } }, state) => {
@@ -72,18 +87,31 @@ export default function Login() {
 
   const handleClickLogin = () => {
     if (Lemail === email && Lpassword === password) {
-      dispatch(setMsgLogInOK(true, true));
-      setStorage('LSuser', { LuserName, Lemail, Lpassword });
       closeMsgLoginOK();
+      setStorage('LSuser', { LuserName, Lemail, Lpassword });
       setDisabledBtn(true);
       history.push('/');
+    } else {
+      closeMsgLoginError();
     }
   };
 
+  /*= =================== MESSAGE LOGIN_ERROR ==================== */
+  const renderMsgLoginOK = () => (
+    <div className={(msgLoginError) ? 'msgLoginError showMsg' : 'msgLoginError'}>
+      <div aria-hidden className="msgClose" onClick={() => { dispatch(setMsgLoginError(false)); }} />
+      <p>Login não efetuado,</p>
+      <div className="msgContent">
+        <p>erro no usuário e/ou senha</p>
+        <MdError style={{ fontSize: '1.4rem', marginLeft: '0.3rem' }} />
+      </div>
+    </div>
+  );
+
   const renderLogin = () => (
     <div className="login">
-      <div className="loginImg">
-        <img src={imgLogin} alt="img-login" />
+      <div className="loginAnim">
+        <GoLoginDash page="login" />
       </div>
 
       <div className="loginForms">
@@ -214,6 +242,7 @@ export default function Login() {
   return (
     <>
       <Header />
+      {renderMsgLoginOK()}
       {renderLogin()}
       <Footer />
     </>

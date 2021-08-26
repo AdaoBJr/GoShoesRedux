@@ -22,7 +22,7 @@ export default function GoLogout() {
       </div>
 
       <div className="cartLogin">
-        <GoLoginDash logout />
+        <GoLoginDash page="logout" />
         <Link to="/login">
           <button
             type="button"

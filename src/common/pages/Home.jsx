@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { BiUpArrowAlt } from 'react-icons/bi';
+import { MdDoneAll } from 'react-icons/md';
 import ALink from 'react-anchor-link-smooth-scroll';
 
 import { Link } from 'react-router-dom';
@@ -76,8 +77,10 @@ export default function Home() {
   const renderMsgLoginOK = () => (
     <div className={(msgLoginOK) ? 'msgLoginOK showMsg' : 'msgLogin'}>
       <div aria-hidden className="msgClose" onClick={() => { dispatch(setMsgLogInOK(true, false)); }} />
-      <p className="msgContent" style={{ marginTop: '1rem' }}>Login efetuado com sucesso </p>
-      <br />
+      <div className="msgContent">
+        <p>Login efetuado com sucesso! </p>
+        <MdDoneAll className="msgContent_icon" />
+      </div>
     </div>
   );
 

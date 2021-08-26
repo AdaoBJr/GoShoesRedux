@@ -23,8 +23,8 @@ const LogoutDashboard = {
   },
 };
 
-export default function GoLoginDash({ logout }) {
-  if (logout) {
+export default function GoLoginDash({ page }) {
+  if (page === 'logout') {
     return (
       <div className="goLoginDashboard">
         <Lottie
@@ -34,7 +34,7 @@ export default function GoLoginDash({ logout }) {
     );
   }
   return (
-    <div className="goLoginDashboard">
+    <div className={(page === 'login') ? 'loginDashboard' : 'goLoginDashboard'}>
       <Lottie
         options={LoginDashboard}
       />
@@ -43,9 +43,9 @@ export default function GoLoginDash({ logout }) {
 }
 
 GoLoginDash.propTypes = {
-  logout: PropTypes.bool,
+  page: PropTypes.string,
 };
 
 GoLoginDash.defaultProps = {
-  logout: undefined,
+  page: undefined,
 };
