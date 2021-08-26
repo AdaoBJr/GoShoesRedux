@@ -14,7 +14,7 @@ export default function Header({ colec }) {
   const dispatch = useDispatch();
   const {
     screen: {
-      home, fav, carT, profile, login, lightTheme,
+      home, fav, carT, profile, lightTheme,
     },
     cart: { cart },
     user: { logIn },
@@ -104,13 +104,6 @@ export default function Header({ colec }) {
                 aria-hidden
               >
                 <Link to="/profile" className={(profile) ? 'navLink activeLink' : 'navLink'}>Perfil</Link>
-              </li>
-              <li
-                className="navItem"
-                onClick={() => setPagesMenu(!showMenu)}
-                aria-hidden
-              >
-                <Link to="/login" className={(login) ? 'navLink activeLink' : 'navLink'}>Login</Link>
               </li>
 
               <li

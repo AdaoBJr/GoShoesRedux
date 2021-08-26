@@ -938,6 +938,7 @@ button {
 .goLoginDashboard {
   width: 500px;
   border-bottom: 1px solid var(--text-color-light);
+  border-top: 1px solid var(--text-color-light);
   margin-bottom: var(--mb-2);
 }
 
@@ -1245,21 +1246,21 @@ button {
 
 /*========== PROFILE ==========*/
 
-.profileContainer {
+/* .profileContainer {
   padding: 10px ;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .profileCard {
   position: relative;
   width: 100%;
-  max-width: 1366px;
-  height: 900px;
+  /* max-width: 1366px; */
+  height: 200px;
   background-color: #FFF;
   border-radius: 5px;
-  box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.1); */
   overflow: hidden;
 }
 
@@ -1267,13 +1268,13 @@ button {
   content: '';
   position: absolute;
   width: 100%;
-  height: 8.5rem;
+  height: 5rem;
   background-image: linear-gradient(to top, var(--first-color-dark), var(--first-color-darken) );
 }
 
 .profileContent {
   position: absolute;
-  top: 5rem;
+  top: 1rem;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1313,9 +1314,18 @@ button {
 
 .profileContent .userName, .email {
   font-size: 1.2rem;
-  color: #FFF;
   line-height: 1;
   margin: 5px 0;
+}
+
+.profileData {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profileData input {
+ font-family: var(--body-font);
 }
 
 .bigImgProfile {

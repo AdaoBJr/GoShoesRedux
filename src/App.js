@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
 import Home from './common/pages/Home';
-import Login from './common/pages/Login';
 import Profile from './common/pages/Profile';
 import Favorited from './common/pages/Favorited';
 import Details from './common/pages/Details';
@@ -13,7 +12,7 @@ import Purchased from './common/pages/Purchased';
 
 import {
   addCart, addLogin, addTotalCart, setFav, SET_SCREEN_CART, SET_SCREEN_FAV,
-  SET_SCREEN_HOME, SET_SCREEN_LOGIN, SET_SCREEN_PROFILE,
+  SET_SCREEN_HOME, SET_SCREEN_PROFILE,
 } from './redux/actions';
 
 import { getStorage } from './functions';
@@ -44,9 +43,6 @@ function App() {
       case '/profile':
         return dispatch({ type: SET_SCREEN_PROFILE });
 
-      case '/login':
-        return dispatch({ type: SET_SCREEN_LOGIN });
-
       default:
         return '';
     }
@@ -65,7 +61,6 @@ function App() {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={Login} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/favorited" component={Favorited} />
       <Route exact path="/details/:id" component={Details} />

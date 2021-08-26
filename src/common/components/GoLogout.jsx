@@ -9,6 +9,7 @@ import Footer from './Footer';
 import GoLoginDash from './GoLoginDash';
 import Header from './Header';
 import confete from '../../files/images/confete.png';
+import ProfileHeader from './ProfileHeader';
 
 export default function GoLogout() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export default function GoLogout() {
       </div>
 
       <div className="cartLogin">
+        <ProfileHeader />
         <GoLoginDash page="logout" />
         <Link to="/login">
           <button
