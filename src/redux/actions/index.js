@@ -21,6 +21,11 @@ export const setLogIn = (logIn) => ({ // ACTION-CREATOR -> setLogIn
   type: SET_LOG_IN, payload: { logIn },
 });
 
+export const SET_LOG_OUT = 'SET_LOG_OUT'; // ACTION -> SET_LOG_OUT
+export const setLogOut = () => ({ // ACTION-CREATOR -> setLogOut
+  type: SET_LOG_OUT,
+});
+
 // PRODUCTS ---------------------------------------------------------------------------------------
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'; // ACTION -> ADD_PRODUCT

@@ -1,5 +1,5 @@
 import {
-  ADD_LOGIN, SET_LOG_IN, SET_SIGN_UP, SET_MSG_LOGIN,
+  ADD_LOGIN, SET_LOG_IN, SET_SIGN_UP, SET_MSG_LOGIN, SET_LOG_OUT,
 } from '../actions';
 
 export const USER = {
@@ -37,6 +37,20 @@ const userReducer = (state = USER, { type, payload }) => { // Desestruturação 
       const { userName, email, password } = payload;
       return {
         ...state,
+        userName,
+        email,
+        password,
+      };
+    }
+    case SET_LOG_OUT: {
+      const {
+        logIn, signUp, msgLogin, userName, email, password,
+      } = USER;
+      return {
+        ...state,
+        logIn,
+        signUp,
+        msgLogin,
         userName,
         email,
         password,
