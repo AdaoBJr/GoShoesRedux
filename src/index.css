@@ -874,6 +874,37 @@ button {
   cursor: pointer;
 }
 
+.cartLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  padding: 1rem;
+  background-color: #FFF;
+  margin: 0 auto;
+  box-shadow: 0 3px 12px rgba(65,11,16,.15);
+  border-radius: .5rem;
+}
+
+.cartLogin button, .cartLogin p {
+  font-size: var(--h3-font-size);
+}
+
+.goLoginTitle {
+  font-size: var(--h3-font-size);
+  color: var(--title-color);
+  text-align: center;
+  margin-top: var(--mb-7);
+  margin-bottom: var(--mb-3);
+}
+
+.goLoginDashboard {
+  width: 500px;
+  border-bottom: 1px solid var(--text-color-light);
+  margin-bottom: var(--mb-2);
+}
+
 .addRemoveBtns {
   position: absolute;
   right: 0;
@@ -1813,6 +1844,14 @@ button {
 
   .cancelIcon {
     font-size: 1.5rem;
+  }
+
+  .goLoginTitle {
+    font-size: var(--h2-font-size);
+  }
+
+  .goLoginDashboard {
+    width: 420px;
   }
 
   /*========== CHECKOUT ==========*/
