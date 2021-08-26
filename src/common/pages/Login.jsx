@@ -175,7 +175,7 @@ export default function Login() {
             type="button"
             className="loginButton"
             disabled={disabledBtn}
-            onClick={() => { setSignUp(!signUp); handleClickRegister(); }}
+            onClick={() => { dispatch(setSignUp()); handleClickRegister(); }}
           >
             Criar
           </button>
