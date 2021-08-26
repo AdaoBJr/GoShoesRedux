@@ -81,7 +81,7 @@ export default function Profile() {
 
   const handleClickRegister = () => {
     setLogin({ ...login, LuserName: RuserName });
-    dispatch(addLogin(AddToUsers(register, users)));
+    dispatch(addLogin(AddToUsers(register, users, Remail)));
     setDisabledBtn(true);
     setRegister(initialRegister);
   };
@@ -90,6 +90,7 @@ export default function Profile() {
     const atualUser = users.filter((item) => item.email === Lemail);
     if (atualUser.length) {
       if (Lemail === atualUser[0].email && Lpassword === atualUser[0].password) {
+        dispatch(addLogin(AddToUsers(false, users, Lemail)));
         closeMsgLoginOK();
         setDisabledBtn(true);
         history.push('/');

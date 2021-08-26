@@ -34,10 +34,10 @@ export default function ProfileHeader() {
           </div>
           <div className="profileData">
             <div>
-              <h3 className="userName">{ users[0].userName }</h3>
-              <h3 className="email">{ users[0].email }</h3>
+              <h3 className="userName">{ users.filter((item) => item.active)[0].userName }</h3>
+              <h3 className="email">{ users.filter((item) => item.active)[0].email }</h3>
             </div>
-            <input type="file" />
+            {/* <input type="file" /> */}
           </div>
         </div>
       </div>

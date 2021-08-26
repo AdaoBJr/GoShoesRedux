@@ -40,23 +40,36 @@ export const Fav = (product, favorited) => {
 // ----------------------------------------------------------------------------------------------
 // LOGIN
 
-export const AddToUsers = (register, users) => {
+export const AddToUsers = (register, users, Email) => {
   const { RuserName: userName, Remail: email, Rpassword: password } = register;
+
+  // DEFINE ALL USERS ACTIVE: FALSE
   const Users = [...users];
-
-  const findUser = Users.find((item) => item.email === email);
-  if (!Users.length || !findUser) {
-    const newUsers = [...users, {
-      userName, email, password,
-    }];
-    setStorage('LSusers', newUsers);
-    return newUsers;
+  for (let i = 0; i < Users.length; i += 1) {
+    Users[i].active = false;
   }
-  const key = Users.indexOf(findUser);
 
-  Users[key].email = email;
-  Users[key].password = password;
+  if (register || Email) {
+  // FIND USER
+    const findUser = Users.find((item) => item.email === Email);
 
+    // ADD NEW USER
+    if (!Users.length || !findUser) {
+      const newUsers = [...users, {
+        userName, email, password, active: true,
+      }];
+      setStorage('LSusers', newUsers);
+      return newUsers;
+    }
+
+    // UPDATE USER
+    const key = Users.indexOf(findUser);
+    Users[key].active = true;
+    if (register) {
+      Users[key].password = userName;
+      Users[key].password = password;
+    }
+  }
   setStorage('LSusers', Users);
   return Users;
 };

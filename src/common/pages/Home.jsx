@@ -50,7 +50,7 @@ export default function Home() {
       <p className="msgContent">Para continuar, </p>
       <p className="msgContent">efetue o acesso a sua conta GoShoes</p>
       <br />
-      <Link to="/login">
+      <Link to="/profile">
         <button
           type="button"
           className="loginSignin"
@@ -61,7 +61,7 @@ export default function Home() {
         </button>
       </Link>
       <p className="loginAccount">Não tem uma conta ?</p>
-      <Link to="/login">
+      <Link to="/profile">
         <button
           type="button"
           onClick={() => { dispatch(setSignUp()); dispatch(setMsgLogin(false)); }}

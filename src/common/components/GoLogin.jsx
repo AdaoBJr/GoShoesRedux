@@ -17,7 +17,7 @@ export default function GoLogin() {
       <br />
       <div className="cartLogin">
         <GoLoginDash />
-        <Link to="/login">
+        <Link to="/profile">
           <button
             type="button"
             className="loginSignin"
@@ -29,7 +29,7 @@ export default function GoLogin() {
           <FaArrowAltCircleRight style={{ verticalAlign: 'middle' }} className="footerSocial" />
         </Link>
         <p className="loginAccount">Não tem uma conta ?</p>
-        <Link to="/login">
+        <Link to="/profile">
           <button
             type="button"
             onClick={() => { dispatch(setSignUp()); dispatch(setMsgLogin(false)); }}
