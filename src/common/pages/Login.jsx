@@ -10,6 +10,7 @@ import { addLogin, setLogIn, setSignUp } from '../../redux/actions';
 import { setStorage } from '../../functions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import GoLogout from '../components/GoLogout';
 
 const initialLogin = {
   logIn: null,
@@ -33,14 +34,16 @@ export default function Login() {
 
   const { RuserName, Remail, Rpassword } = register;
   const { LuserName, Lemail, Lpassword } = login;
-  const { user: { signUp, email, password } } = useSelector((state) => state);
+  const {
+    user: {
+      logIn, signUp, email, password,
+    },
+  } = useSelector((state) => state);
 
   const validationEmailPwd = () => {
     const regex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const Email = regex.test(Remail) || regex.test(Lemail);
-    console.log(Email);
     const Pwd = Rpassword.length || Lpassword.length;
-    console.log(Pwd);
     const minPwd = 7;
 
     if (Email && Pwd >= minPwd) {
@@ -57,11 +60,8 @@ export default function Login() {
 
   const handleClickRegister = () => {
     dispatch(addLogin(RuserName, Remail, Rpassword));
-    setLogin({
-      ...login, LuserName: RuserName, Lemail: Remail, Lpassword: Rpassword,
-    });
-    setRegister(initialRegister);
     setDisabledBtn(true);
+    setRegister(initialRegister);
   };
 
   const handleClickLogin = () => {
@@ -206,6 +206,7 @@ export default function Login() {
   useEffect(validationEmailPwd, [Remail, Rpassword, Lemail, Lpassword]);
 
   // ------------------------------------------------------------------------------------------
+  if (logIn) { return <GoLogout />; }
   return (
     <>
       <Header />
