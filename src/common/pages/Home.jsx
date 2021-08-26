@@ -46,7 +46,7 @@ export default function Home() {
   const renderMsgLogin = () => (
     <div className={(msgLogin) ? 'msgLogin showMsg' : 'msgLogin'}>
       <div aria-hidden className="msgClose" onClick={() => { dispatch(setMsgLogin(false)); }} />
-      <p className="msgContent">Para continuar,</p>
+      <p className="msgContent">Para continuar, </p>
       <p className="msgContent">efetue o acesso a sua conta GoShoes</p>
       <br />
       <Link to="/login">

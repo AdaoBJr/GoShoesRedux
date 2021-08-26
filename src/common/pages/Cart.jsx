@@ -16,6 +16,7 @@ import {
 import CartFooter from '../components/CartFooter';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import GoLogin from '../components/GoLogin';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export default function Cart() {
   const {
     products: { favorited },
     cart: { cart },
+    user: { logIn },
   } = useSelector((state) => state);
 
   /*= =================== SHOW SCROLL TOP ==================== */
@@ -109,6 +111,11 @@ export default function Cart() {
 
   // ---------------------------------------------------------------------------------------------
 
+  if (!logIn) {
+    return (
+      <GoLogin />
+    );
+  }
   if (!cart.length) {
     return (
       <>
