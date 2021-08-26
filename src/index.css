@@ -1416,6 +1416,17 @@ button {
   transition: all 0.5s ease;
 }
 
+.titleLogout {
+  display: flex;
+  justify-content: center;
+}
+
+.titleLogout div {
+  margin-top: var(--mb-7);
+  margin-left: var(--mb-1);;
+  width: 50px;
+}
+
 
 /*========== LOGIN ==========*/
 
