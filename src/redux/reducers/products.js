@@ -1,9 +1,10 @@
 import {
-  ADD_PRODUCT, SET_FAVORITE, ADD_CART, ADD_TOTAL_CART,
+  ADD_PRODUCT, SET_FAVORITE, ADD_CART, ADD_TOTAL_CART, ADD_FILTERED_PROD,
 } from '../actions';
 
 export const PRODUCTS = {
   products: [],
+  filteredProd: [],
   favorited: [],
 };
 
@@ -14,6 +15,13 @@ const productsReducer = (state = PRODUCTS, { type, payload }) => { // Desestrutu
       return {
         ...state,
         products,
+      };
+    }
+    case ADD_FILTERED_PROD: {
+      const { filteredProd } = payload;
+      return {
+        ...state,
+        filteredProd,
       };
     }
     case SET_FAVORITE: {

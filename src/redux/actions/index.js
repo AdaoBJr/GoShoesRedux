@@ -43,6 +43,11 @@ export const addProduct = (products) => ({ // ACTION-CREATOR -> addProduct
   type: ADD_PRODUCT, payload: { products },
 });
 
+export const ADD_FILTERED_PROD = 'ADD_FILTERED_PROD'; // ACTION -> ADD_FILTERED_PROD
+export const addFilteredProd = (filteredProd) => ({ // ACTION-CREATOR -> addProduct
+  type: ADD_FILTERED_PROD, payload: { filteredProd },
+});
+
 // Fetch Thunk
 
 // Thunk com Async / Await

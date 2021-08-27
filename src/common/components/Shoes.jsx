@@ -5,7 +5,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 
 import {
-  FaHeart, FaRegHeart, FaMinus, FaPlus, FaShoppingCart,
+  FaHeart, FaRegHeart, FaMinus, FaPlus, FaShoppingCart, FaShippingFast,
 } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
@@ -24,7 +24,7 @@ export default function Shoes() {
   const [pages, setPages] = useState(initialPage);
 
   const {
-    products: { products, favorited },
+    products: { filteredProd, products, favorited },
     cart: { cart },
     user: { logIn },
   } = useSelector((state) => state);
@@ -36,7 +36,7 @@ export default function Shoes() {
 
   const qtyPages = () => {
     const { cardsLimit, numPgs } = pages;
-    const qtyPgsFull = products.length / cardsLimit;
+    const qtyPgsFull = (filteredProd.length || products.length) / cardsLimit;
     const qtyPgsFloor = Math.floor(qtyPgsFull);
     const qtyPgs = Math.ceil(qtyPgsFull);
 
@@ -48,7 +48,7 @@ export default function Shoes() {
   const nextPage = () => {
     const { limitPg, cardsLimit, atualPg } = pages;
 
-    if (limitPg >= products.length - 1) {
+    if (limitPg >= (filteredProd.length || products.length) - 1) {
       setPages({
         ...pages, initialPg: 0, limitPg: 6, atualPg: 1,
       });
@@ -119,12 +119,12 @@ export default function Shoes() {
     }
   };
 
-  const renderProducts = (Products) => {
+  const renderProducts = (FilteredProd, Products) => {
     const {
       initialPg, limitPg, numPgs, atualPg,
     } = pages;
 
-    const screenProducts = Products.slice(initialPg, limitPg);
+    const screenProducts = (FilteredProd || Products).slice(initialPg, limitPg);
     return (
       <section className="shoes section bdContainer" id="shoes">
         <h2 data-aos="fade-down" className="sectionTitle">
@@ -137,7 +137,7 @@ export default function Shoes() {
         <div className="shoesContainer bdGrid">
           {screenProducts.map((product, index) => {
             const {
-              id, title, thumbnail, available_quantity: availableQty, price,
+              id, title, thumbnail, available_quantity: availableQty, price, shipping,
             } = product;
             const Qty = showQty(id, cart);
 
@@ -148,6 +148,12 @@ export default function Shoes() {
                 <span className="shoesCategory">
                   {(availableQty) === 1 ? `${availableQty} disponível` : (
                     `${availableQty} disponíveis`)}
+                  {(shipping.free_shipping) ? (
+                    <div>
+                      <span>Frete Grátis</span>
+                      <FaShippingFast className="shoesShip_icon" />
+                    </div>
+                  ) : ''}
                 </span>
                 <span className="shoesPreci">
                   {`R$ ${price
@@ -209,13 +215,13 @@ export default function Shoes() {
   // ----------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(() => { dispatch(getProducts()); }, []);
-  useEffect(() => { if (pages.qtyPgs <= 1) { qtyPages(); } }, [products]);
+  useEffect(() => { if (pages.qtyPgs <= 1) { qtyPages(); } }, [filteredProd, products]);
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
 
   // ----------------------------------------------------------------------------------------------
 
   if (!products?.length) { return (<></>); }
   return (
-    renderProducts(products)
+    renderProducts(filteredProd, products)
   );
 }
