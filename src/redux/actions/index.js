@@ -44,7 +44,7 @@ export const addProduct = (products) => ({ // ACTION-CREATOR -> addProduct
 });
 
 export const ADD_FILTERED_PROD = 'ADD_FILTERED_PROD'; // ACTION -> ADD_FILTERED_PROD
-export const addFilteredProd = (filteredProd) => ({ // ACTION-CREATOR -> addProduct
+export const addFilteredProd = (filteredProd) => ({ // ACTION-CREATOR -> addFilteredProd
   type: ADD_FILTERED_PROD, payload: { filteredProd },
 });
 
@@ -99,6 +99,21 @@ export const setDoneLoading = (done, loading) => ({ // ACTION-CREATOR -> SET_DON
   type: SET_DONE_LOADING, payload: { done, loading },
 });
 
+export const HIGH_FILTER = 'HIGH_FILTER'; // ACTION -> HIGH_FILTER
+export const setHighFilter = (filterOn) => ({ // ACTION-CREATOR -> setHighFilter
+  type: HIGH_FILTER, payload: { filterOn },
+});
+
+export const LOW_FILTER = 'LOW_FILTER'; // ACTION -> LOW_FILTER
+export const setLowFilter = (filterOn) => ({ // ACTION-CREATOR -> setLowFilter
+  type: LOW_FILTER, payload: { filterOn },
+});
+
+export const SHIP_FILTER = 'SHIP_FILTER'; // ACTION -> SHIP_FILTER
+export const setShipFilter = (filterOn) => ({ // ACTION-CREATOR -> setShipFilter
+  type: SHIP_FILTER, payload: { filterOn },
+});
+
 export const SET_SCREEN_HOME = 'SET_SCREEN_HOME'; // ACTION -> SET_SCREEN_HOME
 export const SET_SCREEN_FAV = 'SET_SCREEN_FAV'; // ACTION -> SET_SCREEN_FAV
 export const SET_SCREEN_CART = 'SET_SCREEN_CART'; // ACTION -> SET_SCREEN_CART
@@ -106,8 +121,5 @@ export const SET_SCREEN_PROFILE = 'SET_SCREEN_PROFILE'; // ACTION -> SET_SCREEN_
 export const SET_SCREEN_LOGIN = 'SET_SCREEN_LOGIN'; // ACTION -> SET_SCREEN_LOGIN
 export const SET_THEME = 'SET_THEME'; // ACTION -> SET_THEME
 export const OPEN_FILTER_MENU = 'OPEN_FILTER_MENU'; // ACTION -> OPEN_FILTER_MENU
-export const HIGH_FILTER = 'HIGH_FILTER'; // ACTION -> HIGH_FILTER
-export const LOW_FILTER = 'LOW_FILTER'; // ACTION -> LOW_FILTER
-export const SHIP_FILTER = 'SHIP_FILTER'; // ACTION -> SHIP_FILTER
 
 // -------------------------------------------------------------------------------------------------
