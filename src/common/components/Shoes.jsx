@@ -10,7 +10,7 @@ import {
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 import {
-  getProducts, addCart, setFav, setMsgLogin,
+  getProducts, addCart, setFav, setMsgLogin, addFilteredProd,
 } from '../../redux/actions';
 import { Fav, CarT, showQty } from '../../functions';
 import { TIME_SEC } from '../pages/Profile';
@@ -27,7 +27,34 @@ export default function Shoes() {
     products: { filteredProd, products, favorited },
     cart: { cart },
     user: { logIn },
+    screen: {
+      filterOn, highFilter, lowFilter, shipFilter,
+    },
   } = useSelector((state) => state);
+
+  const filterProducts = () => {
+    if (highFilter) {
+      const newProducts = [...products];
+      newProducts.sort((a, b) => b.price - a.price);
+      dispatch(addFilteredProd(newProducts));
+    }
+    if (lowFilter) {
+      const newProducts = [...products];
+      newProducts.sort((a, b) => a.price - b.price);
+      dispatch(addFilteredProd(newProducts));
+    }
+    if (shipFilter) {
+      let prodNew = [];
+      if (filteredProd.length) { prodNew = [...filteredProd]; }
+      if (!filteredProd.length) { prodNew = [...products]; }
+
+      const newProducts = prodNew.filter(({ shipping }) => shipping.free_shipping);
+      dispatch(addFilteredProd(newProducts));
+    }
+    if (!filterOn) {
+      dispatch(addFilteredProd([]));
+    }
+  };
 
   const threeWordsTitle = (title) => {
     const newName = `${title.split(' ')[0]} ${title.split(' ')[1]} ${title.split(' ')[2]}`;
@@ -35,14 +62,17 @@ export default function Shoes() {
   };
 
   const qtyPages = () => {
-    const { cardsLimit, numPgs } = pages;
+    const { cardsLimit } = pages;
     const qtyPgsFull = (filteredProd.length || products.length) / cardsLimit;
     const qtyPgsFloor = Math.floor(qtyPgsFull);
     const qtyPgs = Math.ceil(qtyPgsFull);
 
+    const numPgs = [];
     for (let i = 1; i <= qtyPgs; i += 1) { numPgs.push(i); }
 
-    setPages({ ...pages, qtyPgs, qtyPgsFloor });
+    setPages({
+      ...pages, qtyPgs, qtyPgsFloor, numPgs,
+    });
   };
 
   const nextPage = () => {
@@ -123,8 +153,11 @@ export default function Shoes() {
     const {
       initialPg, limitPg, numPgs, atualPg,
     } = pages;
+    let rendProducts = [];
+    if (FilteredProd.length) { rendProducts = [...FilteredProd]; }
+    if (!FilteredProd.length) { rendProducts = [...Products]; }
 
-    const screenProducts = (FilteredProd || Products).slice(initialPg, limitPg);
+    const screenProducts = rendProducts.slice(initialPg, limitPg);
     return (
       <section className="shoes section bdContainer" id="shoes">
         <h2 data-aos="fade-down" className="sectionTitle">
@@ -215,7 +248,8 @@ export default function Shoes() {
   // ----------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(() => { dispatch(getProducts()); }, []);
-  useEffect(() => { if (pages.qtyPgs <= 1) { qtyPages(); } }, [filteredProd, products]);
+  useEffect(filterProducts, [filterOn, highFilter, lowFilter, shipFilter]);
+  useEffect(qtyPages, [products, filteredProd]);
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
 
   // ----------------------------------------------------------------------------------------------

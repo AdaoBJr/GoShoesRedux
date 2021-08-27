@@ -23,9 +23,8 @@ import img3 from '../../files/images/img3.png';
 import img4 from '../../files/images/img4.png';
 import img6 from '../../files/images/img6.png';
 import {
-  HIGH_FILTER,
-  LOW_FILTER,
-  OPEN_FILTER_MENU, setMsgLogin, setMsgLogInOK, setSignUp, SHIP_FILTER,
+  OPEN_FILTER_MENU, setHighFilter, setLowFilter,
+  setMsgLogin, setMsgLogInOK, setShipFilter, setSignUp,
 } from '../../redux/actions';
 
 export default function Home() {
@@ -121,7 +120,7 @@ export default function Home() {
             <li
               aria-hidden
               className="filterName"
-              onClick={() => { dispatch({ type: HIGH_FILTER }); }}
+              onClick={() => { dispatch(setHighFilter(false)); }}
             >
               <FaArrowAltCircleUp className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Maior valor
@@ -131,7 +130,7 @@ export default function Home() {
             <li
               aria-hidden
               className="filterName"
-              onClick={() => { dispatch({ type: HIGH_FILTER }); }}
+              onClick={() => { dispatch(setHighFilter(true)); }}
             >
               <FaArrowAltCircleUp className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Maior valor
@@ -142,7 +141,7 @@ export default function Home() {
             <li
               aria-hidden
               className="filterName"
-              onClick={() => { dispatch({ type: LOW_FILTER }); }}
+              onClick={() => { dispatch(setLowFilter(false)); }}
             >
               <FaArrowAltCircleDown className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Menor valor
@@ -152,7 +151,7 @@ export default function Home() {
             <li
               aria-hidden
               className="filterName"
-              onClick={() => { dispatch({ type: LOW_FILTER }); }}
+              onClick={() => { dispatch(setLowFilter(true)); }}
             >
               <FaArrowAltCircleDown className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Menor valor
@@ -163,7 +162,7 @@ export default function Home() {
             <li
               aria-hidden
               className="filterName"
-              onClick={() => { dispatch({ type: SHIP_FILTER }); }}
+              onClick={() => { dispatch(setShipFilter(false)); }}
             >
               <FaShippingFast className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Frete Grátis
@@ -173,7 +172,7 @@ export default function Home() {
             <li
               aria-hidden
               className="filterName"
-              onClick={() => { dispatch({ type: SHIP_FILTER }); }}
+              onClick={() => { dispatch(setShipFilter(true)); }}
             >
               <FaShippingFast className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Frete Grátis
