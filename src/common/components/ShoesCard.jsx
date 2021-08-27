@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
   FaHeart, FaMinus, FaPlus, FaRegHeart, FaShippingFast, FaShoppingCart,
 } from 'react-icons/fa';
-import { CarT, Fav, showQty } from '../../functions';
+import {
+  CarT, Fav, showQty, threeWordsTitle,
+} from '../../functions';
 import { setFav, setMsgLogin } from '../../redux/actions';
 import { TIME_SEC } from '../pages/Profile';
 
@@ -17,11 +20,6 @@ export default function ShoesCard({ screenProducts }) {
     user: { logIn },
     cart: { cart },
   } = useSelector((state) => state);
-
-  const threeWordsTitle = (title) => {
-    const newName = `${title.split(' ')[0]} ${title.split(' ')[1]} ${title.split(' ')[2]}`;
-    return newName;
-  };
 
   const addToCart = (product, add) => {
     if (logIn) {
@@ -55,55 +53,57 @@ export default function ShoesCard({ screenProducts }) {
       const Qty = showQty(id, cart);
 
       return (
-        <div data-aos="fade-down" data-aos-delay={200 + index * 300} className="shoesContent" key={id}>
-          <img src={thumbnail} alt="" className="shoesImg" />
-          <h3 className="shoesTitle">{threeWordsTitle(title)}</h3>
-          <span className="shoesCategory">
-            {(availableQty) === 1 ? `${availableQty} disponível` : (
-              `${availableQty} disponíveis`)}
-            {(shipping.free_shipping) ? (
-              <div>
-                <span>Frete Grátis</span>
-                <FaShippingFast className="shoesShip_icon" />
+        <Link to={{ pathname: `/details/${id}`, state: { product } }}>
+          <div data-aos="fade-down" data-aos-delay={200 + index * 300} className="shoesContent" key={id}>
+            <img src={thumbnail} alt="" className="shoesImg" />
+            <h3 className="shoesTitle">{threeWordsTitle(title)}</h3>
+            <span className="shoesCategory">
+              {(availableQty) === 1 ? `${availableQty} disponível` : (
+                `${availableQty} disponíveis`)}
+              {(shipping.free_shipping) ? (
+                <div>
+                  <span>Frete Grátis</span>
+                  <FaShippingFast className="shoesShip_icon" />
+                </div>
+              ) : ''}
+            </span>
+            <span className="shoesPreci">
+              {`R$ ${price
+                .toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}
+            </span>
+            <div className="addRemoveButtons">
+              <div
+                aria-hidden
+                className={(Qty > 0) ? 'removeButton' : 'opacity'}
+                onClick={() => addToCart(product, false)}
+              >
+                <FaMinus />
               </div>
-            ) : ''}
-          </span>
-          <span className="shoesPreci">
-            {`R$ ${price
-              .toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}
-          </span>
-          <div className="addRemoveButtons">
-            <div
-              aria-hidden
-              className={(Qty > 0) ? 'removeButton' : 'opacity'}
-              onClick={() => addToCart(product, false)}
-            >
-              <FaMinus />
+              <div
+                aria-hidden
+                className={(Qty === 0) ? 'cartItems' : 'cartItemsN1'}
+                onClick={() => addToCart(product, true)}
+              >
+                <FaShoppingCart />
+                <div className="numberItems">{ Qty }</div>
+              </div>
+              <div
+                aria-hidden
+                className={(Qty > 0) ? 'addButton' : 'opacity'}
+                onClick={() => addToCart(product, true)}
+              >
+                <FaPlus />
+              </div>
             </div>
             <div
               aria-hidden
-              className={(Qty === 0) ? 'cartItems' : 'cartItemsN1'}
-              onClick={() => addToCart(product, true)}
+              className="button favoritedButton"
+              onClick={() => addToFav(product)}
             >
-              <FaShoppingCart />
-              <div className="numberItems">{ Qty }</div>
-            </div>
-            <div
-              aria-hidden
-              className={(Qty > 0) ? 'addButton' : 'opacity'}
-              onClick={() => addToCart(product, true)}
-            >
-              <FaPlus />
+              {(favorited.find((fav) => fav.id === id)) ? <FaHeart /> : <FaRegHeart /> }
             </div>
           </div>
-          <div
-            aria-hidden
-            className="button favoritedButton"
-            onClick={() => addToFav(product)}
-          >
-            {(favorited.find((fav) => fav.id === id)) ? <FaHeart /> : <FaRegHeart /> }
-          </div>
-        </div>
+        </Link>
       );
     })
   );
