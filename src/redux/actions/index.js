@@ -100,5 +100,9 @@ export const SET_SCREEN_CART = 'SET_SCREEN_CART'; // ACTION -> SET_SCREEN_CART
 export const SET_SCREEN_PROFILE = 'SET_SCREEN_PROFILE'; // ACTION -> SET_SCREEN_PROFILE
 export const SET_SCREEN_LOGIN = 'SET_SCREEN_LOGIN'; // ACTION -> SET_SCREEN_LOGIN
 export const SET_THEME = 'SET_THEME'; // ACTION -> SET_THEME
+export const OPEN_FILTER_MENU = 'OPEN_FILTER_MENU'; // ACTION -> OPEN_FILTER_MENU
+export const HIGH_FILTER = 'HIGH_FILTER'; // ACTION -> HIGH_FILTER
+export const LOW_FILTER = 'LOW_FILTER'; // ACTION -> LOW_FILTER
+export const SHIP_FILTER = 'SHIP_FILTER'; // ACTION -> SHIP_FILTER
 
 // -------------------------------------------------------------------------------------------------
