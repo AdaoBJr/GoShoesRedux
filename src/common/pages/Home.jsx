@@ -114,7 +114,7 @@ export default function Home() {
     <div className={classFilterMenu()}>
       <div aria-hidden className="msgClose" onClick={() => { dispatch({ type: OPEN_FILTER_MENU }); }} />
       <div>
-        <p className="titleFilter">Ordenar Produtos</p>
+        <p className="titleFilter">Filtrar Produtos</p>
         <ul className="menuFilter">
           {(highFilter) ? (
             <li
