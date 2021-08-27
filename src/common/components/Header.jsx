@@ -129,7 +129,7 @@ export default function Header({ colec }) {
                 <li
                   className="filterBtn"
                   aria-hidden
-                  onClick={() => dispatch({ type: OPEN_FILTER_MENU })}
+                  onClick={() => { setPagesMenu(!showMenu); dispatch({ type: OPEN_FILTER_MENU }); }}
                 >
                   <FaFilter style={{ cursor: 'pointer', marginLeft: '1rem', fontSize: '1.1rem' }} />
                 </li>

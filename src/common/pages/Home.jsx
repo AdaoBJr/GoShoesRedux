@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+
 import { BiUpArrowAlt } from 'react-icons/bi';
 import { MdDoneAll } from 'react-icons/md';
+import {
+  FaArrowAltCircleUp, FaArrowAltCircleDown, FaShippingFast,
+} from 'react-icons/fa';
 import { BsToggleOff, BsToggleOn } from 'react-icons/bs';
 import ALink from 'react-anchor-link-smooth-scroll';
 
@@ -11,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Shoes from '../components/Shoes';
+import FilterMenuDash from '../components/FilterMenuDash';
 import img0 from '../../files/images/img0.png';
 import img1 from '../../files/images/img1.png';
 import img2 from '../../files/images/img2.png';
@@ -109,7 +114,7 @@ export default function Home() {
     <div className={classFilterMenu()}>
       <div aria-hidden className="msgClose" onClick={() => { dispatch({ type: OPEN_FILTER_MENU }); }} />
       <div>
-        <p className="titleFilter">Ordenar por</p>
+        <p className="titleFilter">Ordenar Produtos</p>
         <ul className="menuFilter">
           {(highFilter) ? (
             <li
@@ -117,6 +122,7 @@ export default function Home() {
               className="filterName"
               onClick={() => { dispatch({ type: HIGH_FILTER }); }}
             >
+              <FaArrowAltCircleUp className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Maior valor
               <BsToggleOn className="btnFilterOn" />
             </li>
@@ -126,6 +132,7 @@ export default function Home() {
               className="filterName"
               onClick={() => { dispatch({ type: HIGH_FILTER }); }}
             >
+              <FaArrowAltCircleUp className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Maior valor
               <BsToggleOff className="btnFilterOff" />
             </li>
@@ -136,6 +143,7 @@ export default function Home() {
               className="filterName"
               onClick={() => { dispatch({ type: LOW_FILTER }); }}
             >
+              <FaArrowAltCircleDown className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Menor valor
               <BsToggleOn className="btnFilterOn" />
             </li>
@@ -145,6 +153,7 @@ export default function Home() {
               className="filterName"
               onClick={() => { dispatch({ type: LOW_FILTER }); }}
             >
+              <FaArrowAltCircleDown className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Menor valor
               <BsToggleOff className="btnFilterOff" />
             </li>
@@ -155,6 +164,7 @@ export default function Home() {
               className="filterName"
               onClick={() => { dispatch({ type: SHIP_FILTER }); }}
             >
+              <FaShippingFast className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Frete Grátis
               <BsToggleOn className="btnFilterOn" />
             </li>
@@ -164,11 +174,13 @@ export default function Home() {
               className="filterName"
               onClick={() => { dispatch({ type: SHIP_FILTER }); }}
             >
+              <FaShippingFast className="btnFilterLeft" style={{ marginRight: '.5rem' }} />
               Frete Grátis
               <BsToggleOff className="btnFilterOff" />
             </li>
           )}
         </ul>
+        <FilterMenuDash />
       </div>
     </div>
   );

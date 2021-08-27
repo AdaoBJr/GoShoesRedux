@@ -17,6 +17,7 @@
   --first-color-darken: #DE3B49;
   --title-color: #161212;
   --title-home-color: #5361FF;
+  --title-home-color-dark: #5361FF;
   --text-color: #5B5757;
   --text-color-light: #8F8A8A;
   --body-color: #FEFBFB;
@@ -73,6 +74,7 @@ html {
 body.darkTheme {
   --first-color-darken: #161212;
   --title-color: #F3F1F1;
+  --title-home-color-dark: #F3F1F1;
   --text-color: #D1C7C8;
   --body-color: #251D1E;
   --container-color: #302728;
@@ -84,8 +86,13 @@ body.darkTheme {
   right: 1.5rem;
   top: 2.2rem;
   display: flex;
-  color: var(--title-color);
+  color: var(--title-home-color-dark);
   font-size: 2rem;
+  transition: .5s;
+}
+
+.changeTheme:hover {
+  color:var(--first-color)
 }
 
 body {
@@ -252,23 +259,36 @@ button {
   }
 }
 
+.filterBtn {
+  position: absolute;
+  right: 3.3rem;
+  top: 5.5rem;
+  color: var(--title-home-color-dark);
+  transition: .5s;
+}
+
+.filterBtn:hover {
+  color: var(--first-color);
+}
+
 .openFilterMenu {
   position: fixed;
-  top: calc( var(--header-height) + 2rem);
+  top: calc( var(--header-height) + 3rem);
   right: -100%;
-  width: 25%;
+  width: 350px;
   height: 70%;
-  padding: 2rem;
-  border-radius: .50rem 0 0 .50rem;
+  padding: 0 0.6rem;
+  border-radius: .5rem;
   color: var(--body-color);
   backdrop-filter: blur(10px);
-  transition: .5s;
   z-index: var(--z-fixed);
+  transition: .5s;
+  box-shadow: 0 4px 10px rgba(239, 236, 244, 0.2),
+              0 -4px 10px rgba(239, 236, 244, 0.2);
 }
 
 .menuLight {
   background-color: rgba(4, 4, 4, 0.6);
-  
 }
 
 .menuDark {
@@ -276,28 +296,39 @@ button {
 }
 
 .showFilter {
-  right: 0;
+  right: 1rem;
 }
 
 .titleFilter {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  margin: 3rem 0 0;
+  padding: 0.6rem 0;
   text-align: center;
+  border-radius: 1rem 1rem 0 0;
+  /* color: var(--title-home-color-dark); */
+  color: var(--first-color);
+  background-color: rgba(255,255,255,.3);
 }
 
 .menuFilter {
   display: grid;
-  justify-content: center;
-  font-size: var(--h3-font-size);
+  border-radius: 0 0 1rem 1rem;
+  background-color: rgba(255,255,255,.3);
+  
 }
 
 .filterName {
-  cursor: pointer;
+  text-align: center;
+  padding: 0.1rem 0;
+  border-radius: 0.8rem;
   transition: .5s;
+  cursor: pointer;
 }
 
 .filterName:hover {
-  color: var(--title-home-color);
+  color: var(--title-home-color-dark);
+  background-color: var(--container-color);
+  transform: scale(1.05);
 }
 
 .btnFilterOn {
@@ -310,6 +341,18 @@ button {
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
   cursor: pointer;
+}
+
+.btnFilterLeft {
+  font-size: 1.6rem;
+  vertical-align: middle;
+}
+
+.filterMenuDash {
+  width: 260px;
+  /* border-top: 1px solid var(--text-color-light); */
+  margin-top: var(--mb-5);
+  margin-left: var(--mb-5);
 }
 
 /*========== NAV ==========*/
@@ -343,19 +386,12 @@ button {
 }
 
 .navLink, .navLogo {
-  color: var(--title-color);
+  color: var(--title-home-color-dark);
   font-weight: var(--font-semi-bold);
-}
-
-.navLogo:hover {
-  color: var(--first-color);
-}
-
-.navLink {
   transition: .3s;
 }
 
-.navLink:hover {
+.navLink:hover, .navLogo:hover {
   color: var(--first-color);
 }
 
@@ -1758,6 +1794,12 @@ button {
   .changeTheme {
     position: initial;
     margin-left: var(--mb-4);
+  }
+
+  .filterBtn {
+    position: inherit;
+    right: 0;
+    top: 0;
   }
 
   .homeContainer {
