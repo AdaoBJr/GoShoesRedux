@@ -51,10 +51,10 @@ function App() {
   // ----------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(findLocation, [pathname]);
+  useEffect(() => { dispatch(addLogin(getStorage('LSusers'))); }, []);
   useEffect(() => { dispatch(addCart(getStorage('LScart'))); }, []);
   useEffect(() => { dispatch(addTotalCart(getStorage('LScartSum'))); }, []);
   useEffect(() => { dispatch(setFav(getStorage('LSfav'))); }, []);
-  useEffect(() => { dispatch(addLogin(getStorage('LSusers'))); }, []);
 
   // ----------------------------------------------------------------------------------------------
 

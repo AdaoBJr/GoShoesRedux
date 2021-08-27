@@ -28,7 +28,7 @@ const initialRegister = {
   Rpassword: '',
 };
 
-const TIME_SEC = 6000;
+export const TIME_SEC = 6000;
 
 export default function Profile() {
   const history = useHistory();

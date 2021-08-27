@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
@@ -12,8 +13,10 @@ import {
   getProducts, addCart, setFav, setMsgLogin,
 } from '../../redux/actions';
 import { Fav, CarT, showQty } from '../../functions';
+import { TIME_SEC } from '../pages/Profile';
 
 export default function Shoes() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const initialPage = {
     qtyPgs: 1, numPgs: [], atualPg: 1, qtyPgsFloor: 1, initialPg: 0, limitPg: 6, cardsLimit: 6,
@@ -98,7 +101,21 @@ export default function Shoes() {
       dispatch(setMsgLogin(false));
     } else {
       dispatch(setMsgLogin(true));
-      dispatch(addCart(CarT(product, cart, add)));
+      setTimeout(() => {
+        history.push('/profile');
+      }, TIME_SEC);
+    }
+  };
+
+  const addToFav = (product) => {
+    if (logIn) {
+      dispatch(setFav(Fav(product, favorited)));
+      dispatch(setMsgLogin(false));
+    } else {
+      dispatch(setMsgLogin(true));
+      setTimeout(() => {
+        history.push('/profile');
+      }, TIME_SEC);
     }
   };
 
@@ -163,7 +180,7 @@ export default function Shoes() {
                 <div
                   aria-hidden
                   className="button favoritedButton"
-                  onClick={() => dispatch(setFav(Fav(product, favorited)))}
+                  onClick={() => addToFav(product)}
                 >
                   {(favorited.find((fav) => fav.id === id)) ? <FaHeart /> : <FaRegHeart /> }
                 </div>
