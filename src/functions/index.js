@@ -124,3 +124,26 @@ export const showQty = (id, cart) => {
   const qty = cart.reduce((acc, currValue) => acc + currValue.count, 0);
   return qty;
 };
+
+// ----------------------------------------------------------------------------------------------
+// REDUCERS
+
+// SCREEN
+// SET FILTER SHIPPING
+export const setShip = (state, filterON) => {
+  const { lowFilter, highFilter } = state;
+
+  if (!filterON) {
+    const filterState = [lowFilter, highFilter];
+    const filterOn = (filterState.filter((item) => item)[0] || false);
+    const shipFilter = !state.shipFilter;
+    return {
+      filterOn,
+      shipFilter,
+    };
+  }
+  return {
+    filterOn: filterON,
+    shipFilter: !state.shipFilter,
+  };
+};
