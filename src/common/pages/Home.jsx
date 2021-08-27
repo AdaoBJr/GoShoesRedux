@@ -4,6 +4,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { BiUpArrowAlt } from 'react-icons/bi';
 import { MdDoneAll } from 'react-icons/md';
+import { BsToggleOff, BsToggleOn } from 'react-icons/bs';
 import ALink from 'react-anchor-link-smooth-scroll';
 
 import { Link } from 'react-router-dom';
@@ -16,12 +17,21 @@ import img2 from '../../files/images/img2.png';
 import img3 from '../../files/images/img3.png';
 import img4 from '../../files/images/img4.png';
 import img6 from '../../files/images/img6.png';
-import { setMsgLogin, setMsgLogInOK, setSignUp } from '../../redux/actions';
+import {
+  HIGH_FILTER,
+  LOW_FILTER,
+  OPEN_FILTER_MENU, setMsgLogin, setMsgLogInOK, setSignUp, SHIP_FILTER,
+} from '../../redux/actions';
 
 export default function Home() {
   const dispatch = useDispatch();
   const [ScrollY, setScrollY] = useState(false);
-  const { user: { msgLogin, msgLoginOK } } = useSelector((state) => state);
+  const {
+    user: { msgLogin, msgLoginOK },
+    screen: {
+      lightTheme, openFilter, highFilter, lowFilter, shipFilter,
+    },
+  } = useSelector((state) => state);
 
   /*= ==== MOUSEMOVE HOME IMG ===== */
   const move = (e) => {
@@ -84,6 +94,85 @@ export default function Home() {
     </div>
   );
 
+  /*= =================== FILTER MENU ==================== */
+  const classFilterMenu = () => {
+    if (openFilter && lightTheme) {
+      return 'openFilterMenu showFilter menuLight';
+    }
+    if (openFilter && !lightTheme) {
+      return 'openFilterMenu showFilter menuDark';
+    }
+    return 'openFilterMenu menuLight';
+  };
+
+  const renderFilterMenu = () => (
+    <div className={classFilterMenu()}>
+      <div aria-hidden className="msgClose" onClick={() => { dispatch({ type: OPEN_FILTER_MENU }); }} />
+      <div>
+        <p className="titleFilter">Ordenar por</p>
+        <ul className="menuFilter">
+          {(highFilter) ? (
+            <li
+              aria-hidden
+              className="filterName"
+              onClick={() => { dispatch({ type: HIGH_FILTER }); }}
+            >
+              Maior valor
+              <BsToggleOn className="btnFilterOn" />
+            </li>
+          ) : (
+            <li
+              aria-hidden
+              className="filterName"
+              onClick={() => { dispatch({ type: HIGH_FILTER }); }}
+            >
+              Maior valor
+              <BsToggleOff className="btnFilterOff" />
+            </li>
+          )}
+          {(lowFilter) ? (
+            <li
+              aria-hidden
+              className="filterName"
+              onClick={() => { dispatch({ type: LOW_FILTER }); }}
+            >
+              Menor valor
+              <BsToggleOn className="btnFilterOn" />
+            </li>
+          ) : (
+            <li
+              aria-hidden
+              className="filterName"
+              onClick={() => { dispatch({ type: LOW_FILTER }); }}
+            >
+              Menor valor
+              <BsToggleOff className="btnFilterOff" />
+            </li>
+          )}
+          {(shipFilter) ? (
+            <li
+              aria-hidden
+              className="filterName"
+              onClick={() => { dispatch({ type: SHIP_FILTER }); }}
+            >
+              Frete Grátis
+              <BsToggleOn className="btnFilterOn" />
+            </li>
+          ) : (
+            <li
+              aria-hidden
+              className="filterName"
+              onClick={() => { dispatch({ type: SHIP_FILTER }); }}
+            >
+              Frete Grátis
+              <BsToggleOff className="btnFilterOff" />
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+
   // ---------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
@@ -102,6 +191,9 @@ export default function Home() {
 
       {/*  =================== MESSAGE LOGIN_OK ==================== */}
       { renderMsgLoginOK() }
+
+      {/* =================== FILTER MENU ==================== */}
+      { renderFilterMenu() }
 
       {/* <!--========== HEADER ==========--> */}
       <Header colec={ScrollY} />

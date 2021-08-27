@@ -7,8 +7,9 @@ import ALink from 'react-anchor-link-smooth-scroll';
 import { BiToggleLeft, BiToggleRight } from 'react-icons/bi';
 import { HiSun } from 'react-icons/hi';
 import { RiMoonClearFill } from 'react-icons/ri';
+import { FaFilter } from 'react-icons/fa';
 import { showQty } from '../../functions';
-import { SET_THEME } from '../../redux/actions';
+import { OPEN_FILTER_MENU, SET_THEME } from '../../redux/actions';
 
 export default function Header({ colec }) {
   const dispatch = useDispatch();
@@ -124,6 +125,15 @@ export default function Header({ colec }) {
                   </span>
                 )}
               </li>
+              {(home) ? (
+                <li
+                  className="filterBtn"
+                  aria-hidden
+                  onClick={() => dispatch({ type: OPEN_FILTER_MENU })}
+                >
+                  <FaFilter style={{ cursor: 'pointer', marginLeft: '1rem', fontSize: '1.1rem' }} />
+                </li>
+              ) : '' }
             </ul>
           </div>
           <div
