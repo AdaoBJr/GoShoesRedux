@@ -5,7 +5,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import Home from './common/pages/Home';
 import Profile from './common/pages/Profile';
 import Favorited from './common/pages/Favorited';
-import Details from './common/pages/Details';
+import ShoesDetails from './common/pages/ShoesDetails';
 import Cart from './common/pages/Cart';
 import CreditCard from './common/pages/CreditCard';
 import Purchased from './common/pages/Purchased';
@@ -63,7 +63,7 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/favorited" component={Favorited} />
-      <Route exact path="/details/:id" component={Details} />
+      <Route exact path="/details/:id" component={ShoesDetails} />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/credit" component={CreditCard} />
       <Route exact path="/purchased" component={Purchased} />
