@@ -41,7 +41,7 @@ export default function CartFooter() {
         <button
           type="button"
           className="trashCancelBtn"
-          onClick={() => { dispatch(addCart([])); localStorage.clear(); }}
+          onClick={() => { dispatch(addCart([])); }}
         >
           <FaTrash className="clearIcon" />
           {(minWidth) ? 'Limpar Carrinho' : 'Limpar'}
