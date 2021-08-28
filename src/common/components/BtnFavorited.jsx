@@ -11,7 +11,11 @@ export default function BtnFavorited({ product }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { products: { favorited }, user: { logIn } } = useSelector((state) => state);
+  const {
+    products: { favorited },
+    user: { logIn },
+    screen: { details },
+  } = useSelector((state) => state);
 
   const addToFav = () => {
     if (logIn) {
@@ -28,7 +32,9 @@ export default function BtnFavorited({ product }) {
   const renderBtnFavorited = () => (
     <div
       aria-hidden
-      className="button favoritedButton"
+      // className="button favoritedButton"
+      className={(!details) ? (
+        'button favoritedButton') : ('button favoritedButtonDetails')}
       onClick={() => addToFav()}
     >
       {(favorited.find((fav) => fav.id === product.id)) ? <FaHeart /> : <FaRegHeart /> }

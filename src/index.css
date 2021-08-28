@@ -817,6 +817,17 @@ button {
   box-shadow: 0 2px 6px rgba(65,11,16,.15);
 }
 
+.favoritedButtonDetails {
+  position: relative;
+  top: .10rem;
+  left: 1rem;
+  font-size: 1.25rem;
+  height: var(--heart-height);
+  padding: .5rem 1rem 0 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(65,11,16,.15);
+}
+
 .addRemoveButtons {
   position: absolute;
   right: 0;
@@ -899,6 +910,43 @@ button {
   opacity: 1;
 }
 
+.addRemoveBtnsDetails {
+  position: relative;
+  left: 20rem;
+  top: -6rem;
+}
+
+.cartItemsDetails {
+  position: relative;
+  top: 4.5rem;
+}
+
+.cartItemsN1Details {
+  position: relative;
+  top: 2.1rem;
+}
+
+.cartItemsDetails, .cartItemsN1Details {
+  left: -21rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--first-color);
+  color: #FFF;
+  border-radius: 1rem;
+  padding: .84rem .65rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),
+              0 -2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.cartItemsDetails:hover, .cartItemsN1Details:hover {
+  background-color: var(--container-color);
+  color: var(--first-color);
+}
+
 .numberItems {
   font-size: 80%;
   display: flex;
@@ -954,7 +1002,7 @@ button {
 }
 
 .box {
-  margin: 20px 20px 15px 20px;
+  margin-top: calc(var(--header-height) + 3rem);
   height: max-content;
   width: 100vw;
   box-shadow: 0 12px 18px -6px rgba(0, 0, 0, 0.3);
@@ -1031,6 +1079,22 @@ button {
   border-radius: 0 0 40px 40px;
   filter: drop-shadow(5px 10px 15px rgba(8,9,13,.4));
   margin-bottom: 1.5rem;
+}
+
+.imageButtons .favCartBtns {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+  height: 70px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(35,0,77,.2);
+}
+
+.imageButtons .favCartBtns:hover {
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, .3);
 }
 
 /*========== FAVORITED ==========*/
@@ -2227,6 +2291,14 @@ button {
     margin-top: 2rem;
     border-radius: 40px;
     filter: drop-shadow(2px 2px 15px rgba(8,9,13,.4));
+  }
+
+  .cartItemsN1Details {
+  top: 3.05rem;
+}
+
+  .imageButtons .favCartBtns {
+    margin: -1rem 6.0rem 0.5rem 12.0rem;
   }
 
   /*========== CART ==========*/

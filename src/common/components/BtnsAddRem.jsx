@@ -14,6 +14,7 @@ export default function BtnsAddRem({ product }) {
   const {
     cart: { cart },
     user: { logIn },
+    screen: { details },
   } = useSelector((state) => state);
 
   const Qty = showQty(product.id, cart);
@@ -30,8 +31,23 @@ export default function BtnsAddRem({ product }) {
     }
   };
 
+  const classAddCartBtn = () => {
+    if (details) {
+      if (Qty === 0) {
+        return 'cartItemsDetails';
+      }
+      return 'cartItemsN1Details';
+    }
+    if (Qty === 0) {
+      return 'cartItems';
+    }
+    return 'cartItemsN1';
+  };
+
   const renderAddRemBtns = () => (
-    <div className="addRemoveButtons">
+    <div
+      className={(details) ? 'addRemoveBtnsDetails' : 'addRemoveButtons'}
+    >
       <div
         aria-hidden
         className={(Qty > 0) ? 'removeButton' : 'opacity'}
@@ -41,7 +57,7 @@ export default function BtnsAddRem({ product }) {
       </div>
       <div
         aria-hidden
-        className={(Qty === 0) ? 'cartItems' : 'cartItemsN1'}
+        className={classAddCartBtn()}
         onClick={() => addToCart(true)}
       >
         <FaShoppingCart />

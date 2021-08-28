@@ -5,6 +5,10 @@ import 'aos/dist/aos.css';
 
 import { FaHome } from 'react-icons/fa';
 import { threeWordsTitle } from '../../functions';
+import BtnFavorited from '../components/BtnFavorited';
+import BtnsAddRem from '../components/BtnsAddRem';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function ShoesDetails() {
   const { state: { product } } = useLocation();
@@ -12,7 +16,6 @@ export default function ShoesDetails() {
 
   const renderRecipe = () => (
     <div data-aos="fade-up" className="recipeDetails">
-      {/* -------------------------------------------------------------------------- */}
       <div className="box topDetails">
         <div className="titleDetails">
           <Link
@@ -45,6 +48,10 @@ export default function ShoesDetails() {
             alt="product-img"
             className="recipeImage"
           />
+          <div className="favCartBtns">
+            <BtnFavorited product={product} />
+            <BtnsAddRem product={product} />
+          </div>
         </div>
       </div>
     </div>
@@ -58,6 +65,10 @@ export default function ShoesDetails() {
   // ---------------------------------------------------------------------------------------------
 
   return (
-    renderRecipe()
+    <>
+      <Header />
+      {renderRecipe()}
+      <Footer />
+    </>
   );
 }
