@@ -13,7 +13,9 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import {
   getProducts, addCart, setFav, setMsgLogin, addFilteredProd,
 } from '../../redux/actions';
-import { Fav, CarT, showQty } from '../../functions';
+import {
+  Fav, CarT, showQty, threeWordsTitle,
+} from '../../functions';
 import { TIME_SEC } from '../pages/Profile';
 
 export default function Shoes() {
@@ -55,11 +57,6 @@ export default function Shoes() {
     if (!filterOn) {
       dispatch(addFilteredProd([]));
     }
-  };
-
-  const threeWordsTitle = (title) => {
-    const newName = `${title.split(' ')[0]} ${title.split(' ')[1]} ${title.split(' ')[2]}`;
-    return newName;
   };
 
   const qtyPages = () => {
