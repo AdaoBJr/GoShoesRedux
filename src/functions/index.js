@@ -14,6 +14,12 @@ export const removeItem = (id, arrayData) => {
   return removedItem;
 };
 
+// FUNÇÃO DE DELIMITAR TAMANHO DO TÍTULO
+export const threeWordsTitle = (title) => {
+  const newName = `${title.split(' ')[0]} ${title.split(' ')[1]} ${title.split(' ')[2]}`;
+  return newName;
+};
+
 // ----------------------------------------------------------------------------------------------
 // SET FAVORITOS
 
