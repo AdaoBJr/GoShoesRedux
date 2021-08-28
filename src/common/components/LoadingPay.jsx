@@ -2,39 +2,39 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import PropTypes from 'prop-types';
 
-import * as loadingLottie from '../../loading.json';
-import * as doneLottie from '../../done.json';
+import * as loadingPayLottie from '../../loadingPay.json';
+import * as donePayLottie from '../../donePay.json';
 
-const loadingAnimation = {
+const loadingPayAnimation = {
   loop: true,
   autoplay: true,
-  animationData: loadingLottie.default,
+  animationData: loadingPayLottie.default,
   rendererSettings: {
     preserveAspectRatio: 'xMidYMid slice',
   },
 };
 
-const doneAnimation = {
+const donePayAnimation = {
   loop: false,
   autoplay: true,
-  animationData: doneLottie.default,
+  animationData: donePayLottie.default,
   rendererSettings: {
     preserveAspectRatio: 'xMidYMid slice',
   },
 };
 
-export default function Loading({ loading }) {
+export default function LoadingPay({ loading }) {
   return (
     <div className="bgLoading">
       {!loading ? (
         <Lottie
-          options={loadingAnimation}
+          options={loadingPayAnimation}
           height={420}
           width={420}
         />
       ) : (
         <Lottie
-          options={doneAnimation}
+          options={donePayAnimation}
           height={220}
           width={220}
         />
@@ -43,10 +43,10 @@ export default function Loading({ loading }) {
   );
 }
 
-Loading.propTypes = {
+LoadingPay.propTypes = {
   loading: PropTypes.bool,
 };
 
-Loading.defaultProps = {
+LoadingPay.defaultProps = {
   loading: undefined,
 };
