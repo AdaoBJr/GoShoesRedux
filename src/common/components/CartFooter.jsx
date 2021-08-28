@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FaTrash, FaShoppingBag } from 'react-icons/fa';
+import { FaTrash, FaCreditCard } from 'react-icons/fa';
 import { TiCancel } from 'react-icons/ti';
 
 import { addCart, addTotalCart, setFetchOnDone } from '../../redux/actions';
@@ -68,7 +68,7 @@ export default function CartFooter() {
             className="shopBtn"
             onClick={() => dispatch(setFetchOnDone(true))}
           >
-            <FaShoppingBag className="shopIcon" />
+            <FaCreditCard className="shopIcon" />
             Pagamento
           </button>
         </Link>
