@@ -69,7 +69,7 @@ export default function CartFooter() {
             onClick={() => dispatch(setFetchOnDone(true))}
           >
             <FaShoppingBag className="shopIcon" />
-            Comprar
+            Pagamento
           </button>
         </Link>
       </footer>
