@@ -996,7 +996,7 @@ button {
 
 /*========== SHOES DETAILS ==========*/
 
-.recipeDetails {
+.shoesDetails {
   display: grid;
   justify-content: center;
 }
@@ -1074,7 +1074,7 @@ button {
   margin-top: -3rem;
 }
 
-.imageButtons .recipeImage {
+.imageButtons .detailsImage {
   width: 86vw;
   border-radius: 0 0 40px 40px;
   filter: drop-shadow(5px 10px 15px rgba(8,9,13,.4));
@@ -2284,7 +2284,7 @@ button {
     padding-right: 3rem;
   }
 
-  .imageButtons .recipeImage {
+  .imageButtons .detailsImage {
     justify-self: center;
     width: 430px;
     margin-left: 6rem;

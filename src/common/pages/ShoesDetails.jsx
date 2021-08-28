@@ -15,8 +15,8 @@ export default function ShoesDetails() {
   const { state: { product } } = useLocation();
   const { title, thumbnail, attributes } = product;
 
-  const renderRecipe = () => (
-    <div data-aos="fade-up" className="recipeDetails">
+  const renderDetails = () => (
+    <div data-aos="fade-up" className="shoesDetails">
       <div className="box topDetails">
         <div className="titleDetails">
           <Link
@@ -47,7 +47,7 @@ export default function ShoesDetails() {
           <img
             src={thumbnail}
             alt="product-img"
-            className="recipeImage"
+            className="detailsImage"
           />
           <div className="favCartBtns">
             <BtnFavorited product={product} />
@@ -69,7 +69,7 @@ export default function ShoesDetails() {
     <>
       <Header />
       <MsgLogin />
-      {renderRecipe()}
+      {renderDetails()}
       <Footer />
     </>
   );
