@@ -9,7 +9,7 @@ import Profile from './common/pages/Profile';
 import Favorited from './common/pages/Favorited';
 import ShoesDetails from './common/pages/ShoesDetails';
 import Cart from './common/pages/Cart';
-import CreditCard from './common/pages/CreditCard';
+import Checkout from './common/pages/Checkout';
 import Purchased from './common/pages/Purchased';
 
 import {
@@ -68,7 +68,7 @@ function App() {
       <Route exact path="/favorited" component={Favorited} />
       <Route exact path="/details/:id" component={ShoesDetails} />
       <Route exact path="/cart" component={Cart} />
-      <Route exact path="/credit" component={CreditCard} />
+      <Route exact path="/checkout" component={Checkout} />
       <Route exact path="/purchased" component={Purchased} />
     </Switch>
   );
