@@ -2172,6 +2172,54 @@ button {
     width: 19rem;
   }
 
+  /*========== SHOES DETAILS ==========*/
+
+  .btnHome {
+    top: -3rem;
+    left: -19rem;
+  }
+
+  .topDetails {
+    display: grid;
+    height: max-content;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 25px;
+  }
+
+  .titleDetails {
+    margin-right: -9rem;
+    min-height: 450px;
+    width: 300px;
+  }
+
+  .titleDetails .titleCategory {
+    font-size: var(--h3-font-size);
+  }
+
+  .ingredients {
+    font-size: var(--normal-font-size);
+  }
+
+  .imageButtons {
+    display: grid;
+    border-radius: 40px;
+    margin-top: 0;
+    padding-left: 1rem;
+    padding-right: 3rem;
+  }
+
+  .imageButtons .recipeImage {
+    justify-self: center;
+    width: 430px;
+    margin-left: 6rem;
+    margin-top: 2rem;
+    border-radius: 40px;
+    filter: drop-shadow(2px 2px 15px rgba(8,9,13,.4));
+  }
+
+
   /*========== FAVORITED ==========*/
   .favContainer {
     grid-template-columns: repeat(3,224px);
