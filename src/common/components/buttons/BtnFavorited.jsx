@@ -3,9 +3,9 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { setFav, setMsgLogin } from '../../redux/actions';
-import { Fav } from '../../functions';
-import { TIME_SEC } from '../pages/Profile';
+import { setFav, setMsgLogin } from '../../../redux/actions';
+import { Fav } from '../../../functions';
+import { TIME_SEC } from '../../pages/Profile';
 
 export default function BtnFavorited({ product }) {
   const history = useHistory();

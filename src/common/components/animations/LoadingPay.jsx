@@ -2,8 +2,8 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import PropTypes from 'prop-types';
 
-import * as loadingPayLottie from '../../loadingPay.json';
-import * as donePayLottie from '../../donePay.json';
+import * as loadingPayLottie from '../../../loadingPay.json';
+import * as donePayLottie from '../../../donePay.json';
 
 const loadingPayAnimation = {
   loop: true,

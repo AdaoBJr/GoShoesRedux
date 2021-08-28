@@ -5,8 +5,8 @@ import 'aos/dist/aos.css';
 
 import { FaHome } from 'react-icons/fa';
 import { threeWordsTitle } from '../../functions';
-import BtnFavorited from '../components/BtnFavorited';
-import BtnsAddRem from '../components/BtnsAddRem';
+import BtnFavorited from '../components/buttons/BtnFavorited';
+import BtnsAddRem from '../components/buttons/BtnsAddRem';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MsgLogin from '../components/MsgLogin';

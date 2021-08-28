@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 
-import * as CreditCardDashboard from '../../creditCard.json';
+import * as CreditCardDashboard from '../../../creditCard.json';
 
 const CreditDashboard = {
   loop: true,

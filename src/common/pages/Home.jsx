@@ -15,7 +15,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Shoes from '../components/Shoes';
 import MsgLogin from '../components/MsgLogin';
-import FilterMenuDash from '../components/FilterMenuDash';
+import FilterMenuDash from '../components/animations/FilterMenuDash';
 import img0 from '../../files/images/img0.png';
 import img1 from '../../files/images/img1.png';
 import img2 from '../../files/images/img2.png';

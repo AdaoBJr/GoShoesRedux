@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Lottie from 'react-lottie';
 
-import * as GoLoginDashboard from '../../GoLoginDash.json';
-import * as GoLogoutDashboard from '../../GoLogoutDash.json';
+import * as GoLoginDashboard from '../../../GoLoginDash.json';
+import * as GoLogoutDashboard from '../../../GoLogoutDash.json';
 
 const LoginDashboard = {
   loop: true,

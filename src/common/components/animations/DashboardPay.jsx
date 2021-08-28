@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 
-import * as dashboardPayLottie from '../../dashboardPay.json';
+import * as dashboardPayLottie from '../../../dashboardPay.json';
 
 const dashboardPayAnimation = {
   loop: true,

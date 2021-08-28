@@ -14,7 +14,7 @@ import { AddToUsers } from '../../functions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GoLogout from '../components/GoLogout';
-import GoLoginDash from '../components/GoLoginDash';
+import GoLoginDash from '../components/animations/GoLoginDash';
 
 const initialLogin = {
   LuserName: '',

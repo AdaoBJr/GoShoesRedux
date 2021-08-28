@@ -9,8 +9,8 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 import { getProducts, addFilteredProd } from '../../redux/actions';
 import { threeWordsTitle } from '../../functions';
-import BtnsAddRem from './BtnsAddRem';
-import BtnFavorited from './BtnFavorited';
+import BtnsAddRem from './buttons/BtnsAddRem';
+import BtnFavorited from './buttons/BtnFavorited';
 
 export default function Shoes() {
   const dispatch = useDispatch();

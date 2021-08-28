@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 
-import * as FilterMenuDashboard from '../../filterMenu.json';
+import * as FilterMenuDashboard from '../../../filterMenu.json';
 
 const FilterDashboard = {
   loop: true,

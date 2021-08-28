@@ -6,7 +6,7 @@ import { RiLogoutBoxRFill } from 'react-icons/ri';
 import { addLogin, setLogOut } from '../../redux/actions';
 
 import Footer from './Footer';
-import GoLoginDash from './GoLoginDash';
+import GoLoginDash from './animations/GoLoginDash';
 import Header from './Header';
 import confete from '../../files/images/confete.png';
 import ProfileHeader from './ProfileHeader';

@@ -3,9 +3,9 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FaMinus, FaPlus, FaShoppingCart } from 'react-icons/fa';
-import { addCart, setMsgLogin } from '../../redux/actions';
-import { CarT, showQty } from '../../functions';
-import { TIME_SEC } from '../pages/Profile';
+import { addCart, setMsgLogin } from '../../../redux/actions';
+import { CarT, showQty } from '../../../functions';
+import { TIME_SEC } from '../../pages/Profile';
 
 export default function BtnsAddRem({ product }) {
   const history = useHistory();

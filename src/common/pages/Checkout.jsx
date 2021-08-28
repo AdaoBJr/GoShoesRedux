@@ -5,7 +5,7 @@ import { FaShoppingBag } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CreditCard from '../components/CreditCard';
-import CreditCardDash from '../components/CreditCardDash';
+import CreditCardDash from '../components/animations/CreditCardDash';
 
 export default function Checkout() {
   const renderCheckout = () => (

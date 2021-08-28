@@ -3,8 +3,9 @@ import { FaArrowAltCircleRight } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setMsgLogin, setSignUp } from '../../redux/actions';
+import GoLoginDash from './animations/GoLoginDash';
 import Footer from './Footer';
-import GoLoginDash from './GoLoginDash';
+
 import Header from './Header';
 
 export default function GoLogin() {

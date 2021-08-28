@@ -10,9 +10,9 @@ import {
   addCart, setDoneLoading, setFav, setFetchOnDone,
 } from '../../redux/actions';
 import { showQty } from '../../functions';
-import Dashboard from '../components/DashboardPay';
+import Dashboard from '../components/animations/DashboardPay';
 import Footer from '../components/Footer';
-import LoadingPay from '../components/LoadingPay';
+import LoadingPay from '../components/animations/LoadingPay';
 
 export default function Purchased() {
   const dispatch = useDispatch();
