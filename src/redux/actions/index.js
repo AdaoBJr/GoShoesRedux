@@ -87,6 +87,16 @@ export const addTotalCart = (totalCart) => ({ // ACTION-CREATOR -> ADD_TOTAL_CAR
   type: ADD_TOTAL_CART, payload: { totalCart },
 });
 
+export const SET_COMPLETE_BUY = 'SET_COMPLETE_BUY'; // ACTION -> SET_COMPLETE_BUY
+export const setCompleteBuy = (buyCompleted) => ({ // ACTION-CREATOR -> setCompleteBuy
+  type: SET_COMPLETE_BUY, payload: { buyCompleted },
+});
+
+export const ADD_DATA_CARD = 'ADD_DATA_CARD'; // ACTION -> ADD_DATA_CARD
+export const addDataCard = ({ target: { name, value } }, Focus) => ({
+  type: ADD_DATA_CARD, payload: { name, value, Focus },
+});
+
 // SCREEN ---------------------------------------------------------------------------------------
 
 export const SET_FETCHON_DONE = 'SET_FETCHON_DONE'; // ACTION -> SET_FETCHON_DONE
