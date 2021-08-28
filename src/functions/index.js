@@ -25,14 +25,14 @@ export const threeWordsTitle = (title) => {
 
 export const Fav = (product, favorited) => {
   const {
-    id, title, thumbnail, price, available_quantity: availableQuantity,
+    id, title, thumbnail, price, available_quantity: availableQuantity, attributes,
   } = product;
   const favorite = [...favorited];
 
   const findFav = favorite.find((item) => item.id === id);
   if (!favorite.length || !findFav) {
     const newFav = [...favorite, {
-      id, title, thumbnail, price, availableQuantity,
+      id, title, thumbnail, price, availableQuantity, attributes,
     }];
     setStorage('LSfav', newFav);
     return newFav;
@@ -86,12 +86,12 @@ export const AddToUsers = (register, users, Email) => {
 // ADD, REMOVE, UPDATE CART
 export const CarT = (product, cart, add) => {
   const {
-    id, title, thumbnail, price, available_quantity: availableQuantity,
+    id, title, thumbnail, price, available_quantity: availableQuantity, attributes,
   } = product;
   const findProduct = cart.find((item) => item.id === product.id);
   if (!cart.length || !findProduct) {
     const productCart = [...cart, {
-      id, title, thumbnail, price, availableQuantity, count: 1, totalValue: price,
+      id, title, thumbnail, price, availableQuantity, attributes, count: 1, totalValue: price,
     }];
     setStorage('LScart', productCart);
     return productCart;
