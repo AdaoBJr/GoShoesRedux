@@ -1458,6 +1458,83 @@ button {
 }
 
 /*========== CHECKOUT ==========*/
+
+.checkoutContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding: 1rem;
+  background-color: #FFF;
+  margin: 0 auto;
+  box-shadow: 0 3px 12px rgba(65,11,16,.15);
+  border-radius: .5rem;
+}
+
+.checkoutDash {
+  width: 230px;
+}
+
+.checkoutForms {
+  display: grid;
+  justify-content: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--text-color-light);
+}
+
+.checkoutBox {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: .5rem;
+  padding: .30rem .5rem;
+  background-color: #FFF;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  box-shadow: 0 0 4px rgba(0,0,0,.2);
+  border-radius: .2rem;
+}
+
+.checkoutIcon {
+  font-size: 1.5rem;
+  color: var(--title-home-color);
+}
+
+.checkoutInput {
+  border: none;
+  outline: none;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-bold);
+  color: var(--title-home-color);
+}
+
+.checkoutInput::placeholder {
+  font-size: var(--normal-font-size);
+  font-family: var(--body-font);
+  color: var(--text-color-light);
+}
+
+.buyBtn {
+  color: #000;
+  margin-top: 1rem;
+  padding: .5rem .75rem;
+  border-radius: .75rem;
+  box-shadow: 0 0 4px rgba(0,0,0,.2);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.buyBtn:hover {
+  color: #FFF;
+  background-color: var(--title-home-color);
+}
+
+.buyBtn:hover .shopIcon {
+  color: #FFF;
+}
+
+/*========== PURCHASED ==========*/
 .checkoutTitle {
   position: relative;
   font-size: var(--h2-font-size);
@@ -2177,6 +2254,15 @@ button {
   }
 
   /*========== CHECKOUT ==========*/
+
+  .checkoutForms {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 700px;
+  }
+
+  /*========== PURCHASED ==========*/
   .checkoutTitle {
     margin-top: var(--mb-5);
     margin-bottom: var(--mb-1);
