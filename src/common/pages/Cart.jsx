@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ALink from 'react-anchor-link-smooth-scroll';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -62,8 +63,13 @@ export default function Cart() {
               >
                 <FaTimes />
               </div>
-              <img src={thumbnail} alt="" className="favImg" />
-              <h3 className="cartTitle">{title}</h3>
+              <Link
+                to={{ pathname: `/details/${id}`, state: { product } }}
+                className="bdGrid"
+              >
+                <img src={thumbnail} alt="" className="favImg" />
+                <h3 className="cartTitle">{title}</h3>
+              </Link>
               <span className="cartCategory">
                 {(availableQuantity) === 1 ? `${availableQuantity} disponível` : (
                   `${availableQuantity} disponíveis`)}
