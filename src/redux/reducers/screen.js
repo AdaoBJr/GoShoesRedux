@@ -6,7 +6,7 @@ import {
 } from '../actions';
 
 export const SCREEN = {
-  fetchOn: true,
+  fetchOn: null,
   loading: undefined,
   done: undefined,
   home: true,

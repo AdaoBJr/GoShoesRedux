@@ -7,7 +7,7 @@ import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 import { MdError } from 'react-icons/md';
 
 import {
-  addLogin, setMsgLoginError, setMsgLogInOK, setSignUp,
+  addLogin, setFetchOnDone, setMsgLoginError, setMsgLogInOK, setSignUp,
 } from '../../redux/actions';
 import { AddToUsers } from '../../functions';
 
@@ -59,10 +59,11 @@ export default function Profile() {
   };
 
   const closeMsgLoginOK = () => {
-    dispatch(setMsgLogInOK(true, true));
-
     setTimeout(() => {
-      dispatch(setMsgLogInOK(true, false));
+      dispatch(setMsgLogInOK(true, true));
+      setTimeout(() => {
+        dispatch(setMsgLogInOK(true, false));
+      }, TIME_SEC);
     }, TIME_SEC);
   };
 
@@ -91,6 +92,7 @@ export default function Profile() {
     if (atualUser.length) {
       if (Lemail === atualUser[0].email && Lpassword === atualUser[0].password) {
         dispatch(addLogin(AddToUsers(false, users, Lemail)));
+        dispatch(setFetchOnDone(true, undefined));
         closeMsgLoginOK();
         setDisabledBtn(true);
         history.push('/');

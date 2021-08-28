@@ -23,9 +23,10 @@ import img3 from '../../files/images/img3.png';
 import img4 from '../../files/images/img4.png';
 import img6 from '../../files/images/img6.png';
 import {
-  OPEN_FILTER_MENU, setHighFilter, setLowFilter,
+  OPEN_FILTER_MENU, setDoneLoading, setFetchOnDone, setHighFilter, setLowFilter,
   setMsgLogInOK, setShipFilter,
 } from '../../redux/actions';
+import Loading from '../components/animations/Loading';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export default function Home() {
   const {
     user: { msgLoginOK },
     screen: {
-      lightTheme, openFilter, highFilter, lowFilter, shipFilter,
+      fetchOn, loading, done, lightTheme, openFilter, highFilter, lowFilter, shipFilter,
     },
   } = useSelector((state) => state);
 
@@ -154,12 +155,26 @@ export default function Home() {
     </div>
   );
 
+  const getLoading = () => {
+    const LOADING_TIME = 3000;
+    const DONE_TIME = 2000;
+
+    setTimeout(() => {
+      dispatch(setDoneLoading(undefined, true));
+      setTimeout(() => {
+        dispatch(setDoneLoading(true));
+      }, DONE_TIME);
+    }, LOADING_TIME);
+    dispatch(setFetchOnDone(false, undefined));
+  };
+
   // ---------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
   useEffect(() => { Aos.init({ duration: 2000 }); }, []);
+  useEffect(() => { if (fetchOn) getLoading(); });
 
   // ---------------------------------------------------------------------------------------------
-
+  if (!done && fetchOn === false) { return (<Loading loading={loading} />); }
   return (
     <div>
       {/* <!--========== SCROLL TOP ==========--> */}
