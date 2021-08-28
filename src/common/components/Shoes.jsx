@@ -6,17 +6,16 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 
 import {
-  FaHeart, FaRegHeart, FaMinus, FaPlus, FaShoppingCart, FaShippingFast,
+  FaHeart, FaRegHeart, FaShippingFast,
 } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 import {
-  getProducts, addCart, setFav, setMsgLogin, addFilteredProd,
+  getProducts, setFav, setMsgLogin, addFilteredProd,
 } from '../../redux/actions';
-import {
-  Fav, CarT, showQty, threeWordsTitle,
-} from '../../functions';
+import { Fav, threeWordsTitle } from '../../functions';
 import { TIME_SEC } from '../pages/Profile';
+import BtnsAddRem from './BtnsAddRem';
 
 export default function Shoes() {
   const history = useHistory();
@@ -28,7 +27,6 @@ export default function Shoes() {
 
   const {
     products: { filteredProd, products, favorited },
-    cart: { cart },
     user: { logIn },
     screen: {
       filterOn, highFilter, lowFilter, shipFilter,
@@ -123,18 +121,6 @@ export default function Shoes() {
     });
   };
 
-  const addToCart = (product, add) => {
-    if (logIn) {
-      dispatch(addCart(CarT(product, cart, add)));
-      dispatch(setMsgLogin(false));
-    } else {
-      dispatch(setMsgLogin(true));
-      setTimeout(() => {
-        history.push('/profile');
-      }, TIME_SEC);
-    }
-  };
-
   const addToFav = (product) => {
     if (logIn) {
       dispatch(setFav(Fav(product, favorited)));
@@ -170,7 +156,6 @@ export default function Shoes() {
             const {
               id, title, thumbnail, available_quantity: availableQty, price, shipping,
             } = product;
-            const Qty = showQty(id, cart);
 
             return (
               <div data-aos="fade-down" data-aos-delay={200 + index * 300} className="shoesContent" key={id}>
@@ -195,30 +180,7 @@ export default function Shoes() {
                   {`R$ ${price
                     .toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}
                 </span>
-                <div className="addRemoveButtons">
-                  <div
-                    aria-hidden
-                    className={(Qty > 0) ? 'removeButton' : 'opacity'}
-                    onClick={() => addToCart(product, false)}
-                  >
-                    <FaMinus />
-                  </div>
-                  <div
-                    aria-hidden
-                    className={(Qty === 0) ? 'cartItems' : 'cartItemsN1'}
-                    onClick={() => addToCart(product, true)}
-                  >
-                    <FaShoppingCart />
-                    <div className="numberItems">{ Qty }</div>
-                  </div>
-                  <div
-                    aria-hidden
-                    className={(Qty > 0) ? 'addButton' : 'opacity'}
-                    onClick={() => addToCart(product, true)}
-                  >
-                    <FaPlus />
-                  </div>
-                </div>
+                <BtnsAddRem product={product} />
                 <div
                   aria-hidden
                   className="button favoritedButton"
