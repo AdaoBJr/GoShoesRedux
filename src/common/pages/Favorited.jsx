@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ALink from 'react-anchor-link-smooth-scroll';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -49,8 +50,13 @@ export default function Favorited() {
 
           return (
             <div data-aos="fade-down" data-aos-delay={200 + index * 300} className="favContent" key={id}>
-              <img src={thumbnail} alt="" className="favImg" />
-              <h3 className="favTitle">{title}</h3>
+              <Link
+                to={{ pathname: `/details/${id}`, state: { product } }}
+                className="bdGrid"
+              >
+                <img src={thumbnail} alt="" className="favImg" />
+                <h3 className="favTitle">{title}</h3>
+              </Link>
               <span className="favCategory">
                 {(availableQuantity) === 1 ? `${availableQuantity} disponível` : (
                   `${availableQuantity} disponíveis`)}
