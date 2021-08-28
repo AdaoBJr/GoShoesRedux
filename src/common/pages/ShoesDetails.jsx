@@ -26,9 +26,9 @@ export default function ShoesDetails() {
             </button>
           </Link>
           <div className="titleCategory">
-            <h1>
+            <h2>
               { threeWordsTitle(title) }
-            </h1>
+            </h2>
             <div className="ingredients">
               <h3>Detalhes do Produto</h3>
               {attributes.map((attribute) => (
@@ -41,33 +41,12 @@ export default function ShoesDetails() {
         </div>
         <div className="imageButtons">
           <img
-            data-testid="recipe-photo"
             src={thumbnail}
             alt="product-img"
             className="recipeImage"
           />
         </div>
       </div>
-      {/* -------------------------------------------------------------------------- */}
-      {/* <div data-aos="zoom-out-down" className="box bottomDetails">
-        <Link to="/">
-          <button
-            type="button"
-            className="btnFinish"
-          >
-            Home
-          </button>
-        </Link>
-        <Link to="/cart">
-          <button
-            type="button"
-            className="btnFinish"
-          >
-            Carrinho de Compras
-          </button>
-        </Link>
-      </div> */}
-      {/* -------------------------------------------------------------------------- */}
     </div>
   );
 
