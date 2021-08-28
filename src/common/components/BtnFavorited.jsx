@@ -32,7 +32,6 @@ export default function BtnFavorited({ product }) {
   const renderBtnFavorited = () => (
     <div
       aria-hidden
-      // className="button favoritedButton"
       className={(!details) ? (
         'button favoritedButton') : ('button favoritedButtonDetails')}
       onClick={() => addToFav()}
