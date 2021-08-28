@@ -9,11 +9,7 @@ import CreditCard from '../components/CreditCard';
 export default function Checkout() {
   const renderCheckout = () => (
     <>
-      <div className="titleLogout">
-        <h1 className="goLoginTitle">Cadastre os dados do seu cartão de crédito</h1>
-
-      </div>
-
+      <h2 className="sectionTitle">Cadastre os dados do seu cartão de crédito</h2>
       <div className="cartLogin">
         <CreditCard />
         <Link to="/purchased">
@@ -23,7 +19,7 @@ export default function Checkout() {
             // onClick={() => dispatch(setFetchOnDone(true))}
           >
             <FaShoppingBag className="shopIcon" />
-            Pagamento
+            Efetuar Compra
           </button>
         </Link>
       </div>
