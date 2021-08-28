@@ -9,6 +9,7 @@ import BtnFavorited from '../components/BtnFavorited';
 import BtnsAddRem from '../components/BtnsAddRem';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import MsgLogin from '../components/MsgLogin';
 
 export default function ShoesDetails() {
   const { state: { product } } = useLocation();
@@ -67,6 +68,7 @@ export default function ShoesDetails() {
   return (
     <>
       <Header />
+      <MsgLogin />
       {renderRecipe()}
       <Footer />
     </>
