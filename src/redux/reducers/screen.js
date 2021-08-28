@@ -1,7 +1,7 @@
 import { setShip } from '../../functions';
 import {
   SET_SCREEN_HOME, SET_SCREEN_FAV, SET_SCREEN_CART, SET_SCREEN_PROFILE,
-  SET_SCREEN_LOGIN, SET_FETCHON_DONE, SET_DONE_LOADING, SET_THEME,
+  SET_SCREEN_DETAILS, SET_FETCHON_DONE, SET_DONE_LOADING, SET_THEME,
   OPEN_FILTER_MENU, HIGH_FILTER, LOW_FILTER, SHIP_FILTER,
 } from '../actions';
 
@@ -13,7 +13,7 @@ export const SCREEN = {
   fav: false,
   carT: false,
   profile: false,
-  login: false,
+  details: false,
   lightTheme: true,
   openFilter: false,
   filterOn: false,
@@ -48,7 +48,7 @@ const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturaç
         fav: false,
         carT: false,
         profile: false,
-        login: false,
+        details: false,
       };
     }
     case SET_SCREEN_FAV: {
@@ -59,7 +59,7 @@ const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturaç
         fav: true,
         carT: false,
         profile: false,
-        login: false,
+        details: false,
       };
     }
     case SET_SCREEN_CART: {
@@ -70,7 +70,7 @@ const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturaç
         fav: false,
         carT: true,
         profile: false,
-        login: false,
+        details: false,
       };
     }
     case SET_SCREEN_PROFILE: {
@@ -81,10 +81,10 @@ const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturaç
         fav: false,
         carT: false,
         profile: true,
-        login: false,
+        details: false,
       };
     }
-    case SET_SCREEN_LOGIN: {
+    case SET_SCREEN_DETAILS: {
       return {
         ...state,
         home: false,
@@ -92,7 +92,7 @@ const screenReducer = (state = SCREEN, { type, payload }) => { // Desestruturaç
         fav: false,
         carT: false,
         profile: false,
-        login: true,
+        details: true,
       };
     }
     case SET_THEME: {
