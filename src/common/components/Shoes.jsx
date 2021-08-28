@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -176,8 +177,13 @@ export default function Shoes() {
 
             return (
               <div data-aos="fade-down" data-aos-delay={200 + index * 300} className="shoesContent" key={id}>
-                <img src={thumbnail} alt="" className="shoesImg" />
-                <h3 className="shoesTitle">{threeWordsTitle(title)}</h3>
+                <Link
+                  to={{ pathname: `/details/${id}`, state: { product } }}
+                  className="bdGrid"
+                >
+                  <img src={thumbnail} alt="" className="shoesImg" />
+                  <h3 className="shoesTitle">{threeWordsTitle(title)}</h3>
+                </Link>
                 <span className="shoesCategory">
                   {(availableQty) === 1 ? `${availableQty} disponível` : (
                     `${availableQty} disponíveis`)}
