@@ -1,29 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 
 import { BiCreditCardAlt } from 'react-icons/bi';
 import { FaCalendarCheck, FaCreditCard, FaUserTie } from 'react-icons/fa';
-
-const InitialdataCard = {
-  name: '',
-  number: '',
-  expiry: '',
-  cvc: '',
-  focus: '',
-};
+import { addDataCard } from '../../redux/actions';
 
 export default function CreditCard() {
-  const [dataCard, setDataCard] = useState(InitialdataCard);
+  const dispacth = useDispatch();
+
+  const { cart: { dataCard } } = useSelector((state) => state);
 
   const {
     name, number, expiry, cvc, focus,
   } = dataCard;
-
-  const handleChange = ({ target: { name: Name, value } }, Focus) => {
-    if (Focus) { setDataCard({ ...dataCard, focus: Name }); }
-    if (!Focus) { setDataCard({ ...dataCard, [Name]: value }); }
-  };
 
   return (
     <>
@@ -43,10 +34,11 @@ export default function CreditCard() {
             name="number"
             val={number}
             autoComplete="off"
+            required
             className="checkoutInput"
             placeholder="Número do cartão"
-            onChange={(e) => setDataCard({ ...dataCard, [e.target.name]: e.target.value })}
-            onFocus={(e) => setDataCard({ ...dataCard, focus: e.target.name })}
+            onChange={(e) => dispacth(addDataCard(e, false))}
+            onFocus={(e) => dispacth(addDataCard(e, true))}
           />
         </div>
 
@@ -57,10 +49,11 @@ export default function CreditCard() {
             name="name"
             val={name}
             autoComplete="off"
+            required
             className="checkoutInput"
             placeholder="Nome do titular"
-            onChange={handleChange}
-            onFocus={(e) => handleChange(e, true)}
+            onChange={(e) => dispacth(addDataCard(e, false))}
+            onFocus={(e) => dispacth(addDataCard(e, true))}
           />
         </div>
 
@@ -71,10 +64,11 @@ export default function CreditCard() {
             name="expiry"
             val={expiry}
             autoComplete="off"
+            required
             className="checkoutInput"
             placeholder="Validade"
-            onChange={handleChange}
-            onFocus={(e) => handleChange(e, true)}
+            onChange={(e) => dispacth(addDataCard(e, false))}
+            onFocus={(e) => dispacth(addDataCard(e, true))}
           />
         </div>
 
@@ -85,10 +79,11 @@ export default function CreditCard() {
             name="cvc"
             val={cvc}
             autoComplete="off"
+            required
             className="checkoutInput"
             placeholder="CVC"
-            onChange={handleChange}
-            onFocus={(e) => handleChange(e, true)}
+            onChange={(e) => dispacth(addDataCard(e, false))}
+            onFocus={(e) => dispacth(addDataCard(e, true))}
           />
         </div>
       </form>
