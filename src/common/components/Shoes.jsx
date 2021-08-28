@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-import {
-  FaHeart, FaRegHeart, FaShippingFast,
-} from 'react-icons/fa';
+import { FaShippingFast } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
-import {
-  getProducts, setFav, setMsgLogin, addFilteredProd,
-} from '../../redux/actions';
-import { Fav, threeWordsTitle } from '../../functions';
-import { TIME_SEC } from '../pages/Profile';
+import { getProducts, addFilteredProd } from '../../redux/actions';
+import { threeWordsTitle } from '../../functions';
 import BtnsAddRem from './BtnsAddRem';
+import BtnFavorited from './BtnFavorited';
 
 export default function Shoes() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const initialPage = {
     qtyPgs: 1, numPgs: [], atualPg: 1, qtyPgsFloor: 1, initialPg: 0, limitPg: 6, cardsLimit: 6,
@@ -26,8 +20,7 @@ export default function Shoes() {
   const [pages, setPages] = useState(initialPage);
 
   const {
-    products: { filteredProd, products, favorited },
-    user: { logIn },
+    products: { filteredProd, products },
     screen: {
       filterOn, highFilter, lowFilter, shipFilter,
     },
@@ -121,18 +114,6 @@ export default function Shoes() {
     });
   };
 
-  const addToFav = (product) => {
-    if (logIn) {
-      dispatch(setFav(Fav(product, favorited)));
-      dispatch(setMsgLogin(false));
-    } else {
-      dispatch(setMsgLogin(true));
-      setTimeout(() => {
-        history.push('/profile');
-      }, TIME_SEC);
-    }
-  };
-
   const renderProducts = (FilteredProd, Products) => {
     const {
       initialPg, limitPg, numPgs, atualPg,
@@ -181,13 +162,7 @@ export default function Shoes() {
                     .toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}
                 </span>
                 <BtnsAddRem product={product} />
-                <div
-                  aria-hidden
-                  className="button favoritedButton"
-                  onClick={() => addToFav(product)}
-                >
-                  {(favorited.find((fav) => fav.id === id)) ? <FaHeart /> : <FaRegHeart /> }
-                </div>
+                <BtnFavorited product={product} />
               </div>
             );
           })}
