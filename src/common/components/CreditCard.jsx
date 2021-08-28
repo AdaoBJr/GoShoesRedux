@@ -35,65 +35,63 @@ export default function CreditCard() {
         number={number}
       />
 
-      <div className="loginForms">
-        <form>
-          <div className="loginBox">
-            <BiCreditCardAlt className="loginIcon" />
-            <input
-              type="tel"
-              name="number"
-              val={number}
-              autoComplete="off"
-              className="loginInput"
-              placeholder="Insira o número do cartão"
-              onChange={(e) => setDataCard({ ...dataCard, [e.target.name]: e.target.value })}
-              onFocus={(e) => setDataCard({ ...dataCard, focus: e.target.name })}
-            />
-          </div>
+      <form className="checkoutForms">
+        <div className="checkoutBox">
+          <BiCreditCardAlt className="checkoutIcon" />
+          <input
+            type="text"
+            name="number"
+            val={number}
+            autoComplete="off"
+            className="checkoutInput"
+            placeholder="Número do cartão"
+            onChange={(e) => setDataCard({ ...dataCard, [e.target.name]: e.target.value })}
+            onFocus={(e) => setDataCard({ ...dataCard, focus: e.target.name })}
+          />
+        </div>
 
-          <div className="loginBox">
-            <FaUserTie className="loginIcon" />
-            <input
-              type="text"
-              name="name"
-              val={name}
-              autoComplete="off"
-              className="loginInput"
-              placeholder="Insira o nome do titular do cartão"
-              onChange={handleChange}
-              onFocus={(e) => handleChange(e, true)}
-            />
-          </div>
+        <div className="checkoutBox">
+          <FaUserTie className="checkoutIcon" />
+          <input
+            type="text"
+            name="name"
+            val={name}
+            autoComplete="off"
+            className="checkoutInput"
+            placeholder="Nome do titular"
+            onChange={handleChange}
+            onFocus={(e) => handleChange(e, true)}
+          />
+        </div>
 
-          <div className="loginBox">
-            <FaCalendarCheck className="loginIcon" />
-            <input
-              type="text"
-              name="expiry"
-              val={expiry}
-              autoComplete="off"
-              className="loginInput"
-              placeholder="Insira a validade do cartão"
-              onChange={handleChange}
-              onFocus={(e) => handleChange(e, true)}
-            />
-          </div>
+        <div className="checkoutBox">
+          <FaCalendarCheck className="checkoutIcon" />
+          <input
+            type="text"
+            name="expiry"
+            val={expiry}
+            autoComplete="off"
+            className="checkoutInput"
+            placeholder="Validade"
+            onChange={handleChange}
+            onFocus={(e) => handleChange(e, true)}
+          />
+        </div>
 
-          <div className="loginBox">
-            <FaCreditCard className="loginIcon" />
-            <input
-              type="text"
-              name="cvc"
-              val={cvc}
-              autoComplete="off"
-              className="loginInput"
-              placeholder="Insira o Cvc do cartão"
-              onChange={handleChange}
-              onFocus={(e) => handleChange(e, true)}
-            />
-          </div>
-        </form>
-      </div>
+        <div className="checkoutBox">
+          <FaCreditCard className="checkoutIcon" />
+          <input
+            type="text"
+            name="cvc"
+            val={cvc}
+            autoComplete="off"
+            className="checkoutInput"
+            placeholder="CVC"
+            onChange={handleChange}
+            onFocus={(e) => handleChange(e, true)}
+          />
+        </div>
+      </form>
     </>
   );
 }
