@@ -1,23 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import ALink from 'react-anchor-link-smooth-scroll';
 
 import { BiUpArrowAlt } from 'react-icons/bi';
 import { TiArrowBack } from 'react-icons/ti';
-import store, { addCart, setDoneLoading, setFetchOnDone } from '../../redux/actions';
+import confete from '../../files/images/confete.png';
+import {
+  addCart, setDoneLoading, setFav, setFetchOnDone,
+} from '../../redux/actions';
 import { showQty } from '../../functions';
 import Dashboard from '../components/DashboardPay';
 import Footer from '../components/Footer';
-import Loading from '../components/LoadingPay';
+import LoadingPay from '../components/LoadingPay';
 
 export default function Purchased() {
+  const dispatch = useDispatch();
   const [ScrollY, setScrollY] = useState(false);
   const {
     screen: { fetchOn, loading, done },
     cart: { cart, totalCart },
-    setScreen,
-    setCart,
-  } = useContext(store);
+  } = useSelector((state) => state);
 
   const Qty = showQty(false, cart);
   /*= =================== SHOW SCROLL TOP ==================== */
@@ -26,38 +29,50 @@ export default function Purchased() {
   };
   window.addEventListener('scroll', scrollTop);
 
+  /*= =================== KEEP BUYING ==================== */
+  const keepBuying = () => {
+    dispatch(addCart([]));
+    dispatch(setFav([]));
+    localStorage.removeItem('LScart');
+    localStorage.removeItem('LSfav');
+    localStorage.removeItem('LScartSum');
+  };
+
   // ---------------------------------------------------------------------------------------------
 
   const renderProducts = () => (
-    <section className="bdContainer" id="checkout">
+    <section className="bdContainer" id="purchased">
       {/* <!--========== SCROLL TOP ==========--> */}
-      <ALink href="#checkout" className={(ScrollY) ? 'scrolltop showScroll' : 'scrolltop'}>
+      <ALink href="#purchased" className={(ScrollY) ? 'scrolltop showScroll' : 'scrolltop'}>
         <BiUpArrowAlt className="scrolltopIcon" />
       </ALink>
 
-      <h2 className="checkoutTitle">
-        Compra Concluída com Sucesso🎉🎉🎉
-      </h2>
+      <div className="titleLogout">
+        <h2 className="goLoginTitle">Compra Concluída com Sucesso!</h2>
+        <div><img src={confete} alt="confete-img" /></div>
+        <div><img src={confete} alt="confete-img" /></div>
+
+      </div>
       <div className="itemsBought">
-        <h4 className="checkoutCategory">
+        <h4 className="purchasedCategory">
           Resumo da Compra:
         </h4>
-        <p className="checkoutCategory">
+        <p className="purchasedCategory">
           {(Qty) === 1 ? `${Qty} Item Comprado` : (
             `${Qty} Itens Comprados`)}
         </p>
-        <p className="checkoutCategory">
+        <p className="purchasedCategory">
           {`Valor: R$ ${totalCart
             .toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}
         </p>
       </div>
-      <div className="checkoutAnimation">
+      <div className="purchasedAnimation">
         <Dashboard />
         <Link
           to="/"
-          onClick={() => { setCart(addCart([])); localStorage.clear(); }}
+          onClick={keepBuying}
         >
-          <h3 className="checkoutBack">
+          <h3 className="purchasedBack">
             <TiArrowBack style={{ fontSize: '1.6rem' }} />
             {' '}
             Continuar Comprando?
@@ -65,7 +80,6 @@ export default function Purchased() {
         </Link>
 
       </div>
-
     </section>
   );
 
@@ -74,12 +88,12 @@ export default function Purchased() {
     const DONE_TIME = 2000;
 
     setTimeout(() => {
-      setScreen(setDoneLoading(undefined, true));
+      dispatch(setDoneLoading(undefined, true));
       setTimeout(() => {
-        setScreen(setDoneLoading(true));
+        dispatch(setDoneLoading(true));
       }, DONE_TIME);
     }, LOADING_TIME);
-    setScreen(setFetchOnDone(false, undefined));
+    dispatch(setFetchOnDone(false, undefined));
   };
 
   // ---------------------------------------------------------------------------------------------
@@ -89,7 +103,7 @@ export default function Purchased() {
 
   // ---------------------------------------------------------------------------------------------
 
-  if (!done) { return (<Loading loading={loading} />); }
+  if (!done) { return (<LoadingPay loading={loading} />); }
   return (
     <>
       {/* <!--========== FAVORITOS ==========--> */}
