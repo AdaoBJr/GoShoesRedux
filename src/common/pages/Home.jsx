@@ -11,10 +11,10 @@ import {
 import { BsToggleOff, BsToggleOn } from 'react-icons/bs';
 import ALink from 'react-anchor-link-smooth-scroll';
 
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Shoes from '../components/Shoes';
+import MsgLogin from '../components/MsgLogin';
 import FilterMenuDash from '../components/FilterMenuDash';
 import img0 from '../../files/images/img0.png';
 import img1 from '../../files/images/img1.png';
@@ -24,14 +24,14 @@ import img4 from '../../files/images/img4.png';
 import img6 from '../../files/images/img6.png';
 import {
   OPEN_FILTER_MENU, setHighFilter, setLowFilter,
-  setMsgLogin, setMsgLogInOK, setShipFilter, setSignUp,
+  setMsgLogInOK, setShipFilter,
 } from '../../redux/actions';
 
 export default function Home() {
   const dispatch = useDispatch();
   const [ScrollY, setScrollY] = useState(false);
   const {
-    user: { msgLogin, msgLoginOK },
+    user: { msgLoginOK },
     screen: {
       lightTheme, openFilter, highFilter, lowFilter, shipFilter,
     },
@@ -56,38 +56,6 @@ export default function Home() {
     if (window.scrollY >= 560) { setScrollY(true); } else { setScrollY(false); }
   };
   window.addEventListener('scroll', scrollTop);
-
-  /*= =================== MESSAGE LOGIN ==================== */
-  const renderMsgLogin = () => (
-    <div className={(msgLogin) ? 'msgLogin showMsg' : 'msgLogin'}>
-      <div aria-hidden className="msgClose" onClick={() => { dispatch(setMsgLogin(false)); }} />
-      <p className="msgContent">Para continuar, </p>
-      <p className="msgContent">você deve efetuar o acesso a sua conta GoShoes</p>
-      <p className="msgContent">você será redirecionado em breve</p>
-
-      <br />
-      <Link to="/profile">
-        <button
-          type="button"
-          className="loginSignin"
-          onClick={() => { dispatch(setMsgLogin(false)); }}
-          style={{ marginBottom: '.8rem' }}
-        >
-          Acessar Login
-        </button>
-      </Link>
-      <p className="loginAccount">Não tem uma conta ?</p>
-      <Link to="/profile">
-        <button
-          type="button"
-          onClick={() => { dispatch(setSignUp()); dispatch(setMsgLogin(false)); }}
-          className="loginSignin"
-        >
-          Registre-se
-        </button>
-      </Link>
-    </div>
-  );
 
   /*= =================== MESSAGE LOGIN_OK ==================== */
   const renderMsgLoginOK = () => (
@@ -200,7 +168,7 @@ export default function Home() {
       </ALink>
 
       {/*  =================== MESSAGE LOGIN ==================== */}
-      { renderMsgLogin() }
+      <MsgLogin />
 
       {/*  =================== MESSAGE LOGIN_OK ==================== */}
       { renderMsgLoginOK() }
