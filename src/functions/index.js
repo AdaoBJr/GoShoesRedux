@@ -72,10 +72,23 @@ export const AddToUsers = (register, users, Email) => {
     const key = Users.indexOf(findUser);
     Users[key].active = true;
     if (register) {
-      Users[key].password = userName;
+      Users[key].userName = userName;
       Users[key].password = password;
     }
   }
+  setStorage('LSusers', Users);
+  return Users;
+};
+
+export const AddPhotoToUsers = (users, photo) => {
+  const Users = [...users];
+  // FIND USER ACTIVE
+  const findUser = Users.find((item) => item.active);
+
+  // ADD PHOTO
+  const key = Users.indexOf(findUser);
+  Users[key].photo = photo;
+
   setStorage('LSusers', Users);
   return Users;
 };
