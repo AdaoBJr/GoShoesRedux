@@ -20,28 +20,27 @@ export default function ProfileHeader() {
           onClick={() => setShowImg(!showImg)}
         />
       </div>
-      {/* <div className="profileContainer"> */}
       <div className="profileCard">
         <div className="profileContent">
-          <div className="imageProfile">
-            <button
-              type="button"
+          <div>
+            <img src={profileImg} className="imageProfile" alt="img-profile" />
+            <div
+              aria-hidden
               className="bgCamera"
               onClick={() => setShowImg(!showImg)}
             >
               <FaCamera className="cameraIcon" />
-            </button>
+            </div>
           </div>
           <div className="profileData">
-            <div>
-              <h3 className="userName">{ users.filter((item) => item.active)[0].userName }</h3>
-              <h3 className="email">{ users.filter((item) => item.active)[0].email }</h3>
-            </div>
+            {/* <div> */}
+            <h3 className="userName">{ `Usuário : ${users.filter((item) => item.active)[0].userName}` }</h3>
+            <h3 className="email">{ `E-mail : ${users.filter((item) => item.active)[0].email}` }</h3>
+            {/* </div> */}
             {/* <input type="file" /> */}
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 

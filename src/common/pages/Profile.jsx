@@ -80,11 +80,20 @@ export default function Profile() {
     if (state === 'register') { setRegister({ ...register, [name]: value }); }
   };
 
-  const handleClickRegister = () => {
+  const handleRegister = () => {
     setLogin({ ...login, LuserName: RuserName });
     dispatch(addLogin(AddToUsers(register, users, Remail)));
+    dispatch(setSignUp());
     setDisabledBtn(true);
     setRegister(initialRegister);
+  };
+
+  const handleClickRegister = () => {
+    handleRegister();
+  };
+
+  const handleKeyPressRegister = ({ key }) => {
+    if (key === 'Enter') { handleRegister(); }
   };
 
   const handleLogin = () => {
@@ -196,6 +205,7 @@ export default function Profile() {
               autoComplete="off"
               className="loginInput"
               onChange={(e) => handleChange(e, 'register')}
+              onKeyPress={handleKeyPressRegister}
             />
           </div>
 
@@ -208,6 +218,7 @@ export default function Profile() {
               autoComplete="off"
               className="loginInput"
               onChange={(e) => handleChange(e, 'register')}
+              onKeyPress={handleKeyPressRegister}
             />
           </div>
 
@@ -220,6 +231,7 @@ export default function Profile() {
               placeholder="Insira uma senha de 7 dígitos"
               className="loginInput"
               onChange={(e) => handleChange(e, 'register')}
+              onKeyPress={handleKeyPressRegister}
             />
           </div>
 
@@ -227,7 +239,7 @@ export default function Profile() {
             type="button"
             className="loginButton"
             disabled={disabledBtn}
-            onClick={() => { dispatch(setSignUp()); handleClickRegister(); }}
+            onClick={handleClickRegister}
           >
             Criar
           </button>

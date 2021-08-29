@@ -1578,21 +1578,12 @@ button {
 
 /*========== PROFILE ==========*/
 
-/* .profileContainer {
-  padding: 10px ;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
 .profileCard {
   position: relative;
   width: 100%;
-  /* max-width: 1366px; */
   height: 200px;
   background-color: #FFF;
   border-radius: 5px;
-  /* box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.1); */
   overflow: hidden;
 }
 
@@ -1614,50 +1605,57 @@ button {
   align-items: center;
 }
 
-.profileContent .imageProfile {
-  position: relative;
+.imageProfile {
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background: url('/src/files/images/profile.jpg') no-repeat center / cover;
   border: 3px solid var(--text-color);
-  margin-bottom: 2px;
   overflow: hidden;
 }
 
 .bgCamera {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(79, 172, 254, 0.7);
+  position: relative;
+  top: -4.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFF;
-  font-size: 1.5rem;
   transition: .5s;
-  opacity: 0;
   cursor: pointer;
 }
 
-.profileContent .imageProfile:hover .bgCamera {
+.cameraIcon {
+  opacity: 0;
+  color: #FFF;
+  transition: .8s;
+  font-size: 1.7rem;
+}
+
+.cameraIcon:hover {
   opacity: 1;
 }
 
-.profileContent .userName, .email {
+.cameraIcon:hover .bgCamera {
+  background: rgba(79, 172, 254, 0.7);
+}
+
+.userName {
+  margin-bottom: 5px;
+}
+
+.userName, .email {
   font-size: 1.2rem;
   line-height: 1;
-  margin: 5px 0;
+  margin-top: -5px;
 }
 
 .profileData {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
 }
 
 .profileData input {
- font-family: var(--body-font);
+  font-family: var(--body-font);
 }
 
 .bigImgProfile {
@@ -1665,7 +1663,6 @@ button {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: -1;
   opacity: 0;
   transition: .5s;
 }
