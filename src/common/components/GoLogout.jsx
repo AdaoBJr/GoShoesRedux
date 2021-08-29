@@ -9,12 +9,41 @@ import Footer from './Footer';
 import GoLoginDash from './animations/GoLoginDash';
 import Header from './Header';
 import confete from '../../files/images/confete.png';
+import iconPerfil from '../../files/images/iconPerfil.png';
 import ProfileHeader from './ProfileHeader';
-import { AddToUsers } from '../../functions';
+import { AddPhotoToUsers, AddToUsers } from '../../functions';
 
 export default function GoLogout() {
   const { user: { users } } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const renderInsertImage = () => {
+    const getFiles = ({ target: { files } }) => {
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        dispatch(addLogin(AddPhotoToUsers(users, reader.result)));
+      });
+
+      reader.readAsDataURL(files[0]);
+    };
+
+    return (
+      <div className="logOutInsertImage">
+        <h3>Alterar imagem do perfil</h3>
+        <label htmlFor="uploadImage">
+          <input
+            type="file"
+            id="uploadImage"
+            className="logOutInputFile"
+            onChange={getFiles}
+          />
+          Escolha uma imagem
+        </label>
+        <img src={iconPerfil} alt="icon-perfil" />
+      </div>
+    );
+  };
 
   const renderGoLogout = () => (
     <>
@@ -23,6 +52,8 @@ export default function GoLogout() {
         <h1 className="goLoginTitle">Você está conectado, tudo certo por aqui!</h1>
         <div><img src={confete} alt="confete-img" /></div>
       </div>
+
+      {renderInsertImage()}
 
       <div className="cartLogin">
         <ProfileHeader />
