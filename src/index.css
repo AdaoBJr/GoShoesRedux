@@ -1814,8 +1814,6 @@ button {
 }
 
 
-/*========== LOGIN ==========*/
-
 .login {
   display: grid;
   height: 100vh;
@@ -2281,9 +2279,6 @@ button {
     width: 420px;
   }
 
-
-  /*========== LOGIN ==========*/
-
   .login {
     justify-items: center;
   }
@@ -2451,9 +2446,6 @@ button {
     margin-top: var(--mb-2);
     cursor: pointer;
   }
-
-
-  /*========== LOGIN ==========*/
 
   .login {
     display: grid;
