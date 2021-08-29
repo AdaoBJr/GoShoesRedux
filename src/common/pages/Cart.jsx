@@ -11,7 +11,7 @@ import {
 import { BiUpArrowAlt } from 'react-icons/bi';
 import { addCart, setFav } from '../../redux/actions';
 import {
-  CarT, Fav, removeItem,
+  CarT, Fav, removeItem, threeWordsTitle,
 } from '../../functions';
 
 import CartFooter from '../components/CartFooter';
@@ -68,7 +68,7 @@ export default function Cart() {
                 className="bdGrid"
               >
                 <img src={thumbnail} alt="" className="favImg" />
-                <h3 className="cartTitle">{title}</h3>
+                <h3 className="cartTitle">{threeWordsTitle(title)}</h3>
               </Link>
               <span className="cartCategory">
                 {(availableQuantity) === 1 ? `${availableQuantity} disponível` : (

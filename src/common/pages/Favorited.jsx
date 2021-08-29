@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import BtnsAddRem from '../components/buttons/BtnsAddRem';
 import BtnFavorited from '../components/buttons/BtnFavorited';
+import { threeWordsTitle } from '../../functions';
 
 export default function Favorited() {
   const [ScrollY, setScrollY] = useState(false);
@@ -55,7 +56,7 @@ export default function Favorited() {
                 className="bdGrid"
               >
                 <img src={thumbnail} alt="" className="favImg" />
-                <h3 className="favTitle">{title}</h3>
+                <h3 className="favTitle">{threeWordsTitle(title)}</h3>
               </Link>
               <span className="favCategory">
                 {(availableQuantity) === 1 ? `${availableQuantity} disponível` : (
