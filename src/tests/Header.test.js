@@ -30,4 +30,20 @@ describe('Testando toda a aplicação do Componente Header', () => {
     const title = getByText(/GoShoes/i);
     expect(title).toBeInTheDocument();
   });
+
+  it('Verifica se os links aparecem no Header', () => {
+    store = mockStore(initialState);
+    const { getByText } = renderWithRouter(<Provider store={store}><Header /></Provider>);
+
+    const Home = getByText(/Home/i);
+    const Collections = getByText(/Coleções/i);
+    const Favorited = getByText(/Favoritos/i);
+    const Cart = getByText(/Carrinho/i);
+    const Profile = getByText(/Perfil/i);
+    expect(Home).toBeInTheDocument();
+    expect(Collections).toBeInTheDocument();
+    expect(Favorited).toBeInTheDocument();
+    expect(Cart).toBeInTheDocument();
+    expect(Profile).toBeInTheDocument();
+  });
 });
