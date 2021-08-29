@@ -87,7 +87,7 @@ export default function Profile() {
     setRegister(initialRegister);
   };
 
-  const handleClickLogin = () => {
+  const handleLogin = () => {
     const atualUser = users.filter((item) => item.email === Lemail);
     if (atualUser.length) {
       if (Lemail === atualUser[0].email && Lpassword === atualUser[0].password) {
@@ -103,6 +103,14 @@ export default function Profile() {
       closeMsgLoginError(false, true);
       setDisabledBtn(true);
     }
+  };
+
+  const handleClickLogin = () => {
+    handleLogin();
+  };
+
+  const handleKeyPressLogin = ({ key }) => {
+    if (key === 'Enter') { handleLogin(); }
   };
 
   /*= =================== MESSAGE LOGIN_ERROR ==================== */
@@ -136,6 +144,7 @@ export default function Profile() {
               autoComplete="off"
               className="loginInput"
               onChange={(e) => handleChange(e, 'login')}
+              onKeyPress={handleKeyPressLogin}
             />
           </div>
 
@@ -147,6 +156,7 @@ export default function Profile() {
               placeholder="Insira sua senha de 7 dígitos"
               className="loginInput"
               onChange={(e) => handleChange(e, 'login')}
+              onKeyPress={handleKeyPressLogin}
             />
           </div>
 
