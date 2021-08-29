@@ -210,7 +210,14 @@ button {
   left: 0;
   z-index: var(--z-fixed);
   background-color: var(--body-color);
+}
+
+.bgHeaderLight {
   box-shadow: 0 3px 12px rgba(65,11,16,.15);
+}
+
+.bgHeaderDark {
+  box-shadow: 0 3px 5px rgba(239, 236, 244, 0.2);
 }
 
 .display {
@@ -276,7 +283,7 @@ button {
   top: calc( var(--header-height) + 3rem);
   right: -100%;
   width: 350px;
-  height: 70%;
+  height: 80%;
   padding: 0 0.6rem;
   border-radius: .5rem;
   color: var(--body-color);
@@ -305,7 +312,6 @@ button {
   padding: 0.6rem 0;
   text-align: center;
   border-radius: 1rem 1rem 0 0;
-  /* color: var(--title-home-color-dark); */
   color: var(--first-color);
   background-color: rgba(255,255,255,.3);
 }
@@ -350,7 +356,6 @@ button {
 
 .filterMenuDash {
   width: 260px;
-  /* border-top: 1px solid var(--text-color-light); */
   margin-top: var(--mb-5);
   margin-left: var(--mb-5);
 }
@@ -1650,6 +1655,7 @@ button {
   font-size: 1.2rem;
   line-height: 1;
   margin-top: -5px;
+  color: #000;
 }
 
 .profileData {
@@ -1834,7 +1840,7 @@ button {
   position: absolute;
   bottom: 1rem;
   width: 100%;
-  background-color: var(--body-color);
+  background-color: var(--container-color);
   padding: 2rem 1rem;
   border-radius: 1rem;
   text-align: center;
@@ -2285,10 +2291,11 @@ button {
   .loginForms {
     width: 348px;
     justify-self: center;
+    margin-top: var(--mb-6);
   }
 
   .loginDashboard {
-    margin-top: var(--mb-7);
+    margin-top: var(--mb-5);
   }
 }
 
@@ -2420,6 +2427,7 @@ button {
     height: 300px;
     padding: 1rem;
     background-color: #FFF;
+    color: #000;
     margin: 0 auto;
     box-shadow: 0 3px 12px rgba(65,11,16,.15);
     border-radius: .5rem;
@@ -2427,6 +2435,10 @@ button {
   
   .logOutInsertImage label {
     cursor: pointer;
+  }
+
+  .logOutInsertImage h3 {
+    color: #000;
   }
   
   .logOutInsertImage img {
@@ -2456,7 +2468,9 @@ button {
   .loginAnim {
     display: flex;
     width: 500px;
-    height: 588px;
+    height: 515px;
+    margin-top: var(--mb-5);
+    background-color: var(--container-color);
     box-shadow: 0 2px 10px rgba(35,0,77,.2);
     border-radius: 1rem;
     padding-left: 1rem;

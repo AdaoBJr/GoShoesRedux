@@ -32,7 +32,7 @@ export default function Header({ colec }) {
   return (
     <>
       {/* <!--========== HEADER ==========--> */}
-      <header className="header" id="header">
+      <header className={(lightTheme) ? 'header bgHeaderLight' : 'header bgHeaderDark'} id="header">
         <nav className="nav bdContainer">
           <Link to="/" className="navLogo">GoShoes</Link>
 

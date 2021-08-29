@@ -68,7 +68,7 @@ export default function GoLogout() {
           >
             Desconectar
           </button>
-          <RiLogoutBoxRFill style={{ verticalAlign: 'middle' }} className="footerSocial" />
+          <RiLogoutBoxRFill style={{ verticalAlign: 'middle', color: 'black' }} className="footerSocial" />
         </Link>
       </div>
       <Footer />
