@@ -1,4 +1,4 @@
-<p align="center"><img width='150px' src='https://github.com/AdaoBJr/GoShoes/blob/main/src/images/GoShoes.png' />
+<p align="center"><img width='150px' src='https://github.com/AdaoBJr/GoShoesRedux/blob/main/src/files/images/shoes-animation.gif' />
 <h1 align="center"> GoShoes-Redux Project - Responsive Page </h1>  </p>
 <h2 align="center">GitHub Pages:</h2>
  
