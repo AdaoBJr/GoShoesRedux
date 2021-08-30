@@ -37,7 +37,7 @@ A partir dessas demandas, desenvolvi uma aplicação onde os usuários poderão:
 
 ## Vídeo de Demonstração da Aplicação
 <div align="center">
-   <a href="https://youtu.be/RZ52lNzavYQ" target="_blank">
+   <a href="https://youtu.be/3h43_YpiAI8" target="_blank">
     <img width='600px' src='https://github.com/AdaoBJr/GoShoesRedux/blob/main/src/files/images/img-youtube.png' target="_blank" />
  </div>
  
