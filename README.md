@@ -35,7 +35,7 @@ A partir dessas demandas, desenvolvi uma aplicação onde os usuários poderão:
   - Interação da aplicação com a construção de testes unitários (RTL) para os componentes das telas;
   - E por fim, finalizar a compra (simulada) dos itens selecionados sendo dirigido para uma Tela de Compra Realizada (podendo iniciar todo processo, caso queira).
 
-## Víde de Demonstração da Aplicação
+## Vídeo de Demonstração da Aplicação
 <div align="center">
    <a href="https://youtu.be/RZ52lNzavYQ" target="_blank">
     <img width='600px' src='https://github.com/AdaoBJr/GoShoesRedux/blob/main/src/files/images/img-youtube.png' target="_blank" />
