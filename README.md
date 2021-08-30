@@ -35,6 +35,15 @@ A partir dessas demandas, desenvolvi uma aplicação onde os usuários poderão:
   - Interação da aplicação com a construção de testes unitários (RTL) para os componentes das telas;
   - E por fim, finalizar a compra (simulada) dos itens selecionados sendo dirigido para uma Tela de Compra Realizada (podendo iniciar todo processo, caso queira).
 
+## Demonstração da Aplicação
+ <iframe
+   title="GoShoesVideo"
+   frameBorder="0"
+   allowFullScreen
+   allow="autoplay; encrypted-media"
+   src={ https://youtu.be/RZ52lNzavYQ }
+ />
+ 
 ## Documentação da API do Mercado Livre
 
 A página _web_ consome os dados da API do _Mercado Livre_ com o seguinte _endpoint_:
